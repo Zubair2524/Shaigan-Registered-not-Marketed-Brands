@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shaigan's Registered not Marketed Brands</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:#07091a;--bg2:#0b0e22;--surface:rgba(255,255,255,0.055);--surface2:rgba(255,255,255,0.09);
+  --border:rgba(255,255,255,0.10);--border2:rgba(255,255,255,0.16);--text:#f0f4ff;--text-dim:#b8c4e0;--text-muted:#6678a0;
+  --cyan:#29e8ff;--violet:#9b6dff;--amber:#ffb830;--green:#22e8a0;--red:#ff5a72;--pink:#ff5ec4;--blue:#5b8fff;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden;}
+.bg-layer{position:fixed;inset:0;pointer-events:none;z-index:0;background:radial-gradient(ellipse 900px 500px at 15% 0%,rgba(155,109,255,0.14) 0%,transparent 70%),radial-gradient(ellipse 700px 600px at 85% 100%,rgba(41,232,255,0.10) 0%,transparent 70%),radial-gradient(ellipse 500px 400px at 55% 50%,rgba(255,184,48,0.05) 0%,transparent 60%);}
+#app{position:relative;z-index:1;}
+::-webkit-scrollbar{width:5px;height:5px;}::-webkit-scrollbar-track{background:transparent;}::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.12);border-radius:3px;}
+
+/* HEADER */
+.header{background:rgba(7,9,26,0.85);backdrop-filter:blur(24px);border-bottom:1px solid var(--border);padding:0 2rem;position:sticky;top:0;z-index:200;display:flex;align-items:center;justify-content:space-between;height:68px;gap:16px;}
+.logo-wrap{display:flex;align-items:center;gap:12px;flex-shrink:0;}
+.logo-icon{width:40px;height:40px;border-radius:11px;background:linear-gradient(135deg,var(--violet),var(--cyan));display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:20px;font-weight:900;color:#fff;box-shadow:0 0 20px rgba(155,109,255,0.4);}
+.logo-text{line-height:1.2;}
+.logo-title{font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:700;background:linear-gradient(90deg,#fff 0%,var(--cyan) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.logo-sub{font-size:0.68rem;color:var(--text-muted);letter-spacing:0.04em;}
+.header-nav{display:flex;gap:2px;}
+.nav-btn{padding:7px 15px;border-radius:9px;border:1px solid transparent;background:transparent;color:var(--text-dim);font-family:'DM Sans',sans-serif;font-size:0.84rem;font-weight:500;cursor:pointer;transition:all 0.18s;display:flex;align-items:center;gap:7px;}
+.nav-btn:hover{background:var(--surface);color:var(--text);}
+.nav-btn.active{background:rgba(41,232,255,0.1);color:var(--cyan);border-color:rgba(41,232,255,0.22);}
+.hdr-actions{display:flex;gap:8px;align-items:center;}
+.hbtn{padding:7px 14px;border-radius:9px;border:1px solid var(--border);background:var(--surface);color:var(--text-dim);font-family:'DM Sans',sans-serif;font-size:0.82rem;cursor:pointer;transition:all 0.18s;display:flex;align-items:center;gap:6px;}
+.hbtn:hover{background:var(--surface2);color:var(--text);border-color:var(--border2);}
+.hbtn.upload{color:var(--cyan);border-color:rgba(41,232,255,0.3);background:rgba(41,232,255,0.08);}
+.hbtn.upload:hover{background:rgba(41,232,255,0.15);}
+.hbtn.del{color:var(--red);border-color:rgba(255,90,114,0.3);background:rgba(255,90,114,0.07);}
+.hbtn.del:hover{background:rgba(255,90,114,0.15);}
+
+/* MAIN */
+.main{padding:2rem;max-width:1600px;margin:0 auto;}
+.page{display:none;}.page.active{display:block;}
+
+/* STATS */
+.stats-bar{display:grid;grid-template-columns:repeat(auto-fill,minmax(148px,1fr));gap:12px;margin-bottom:2rem;}
+.stat-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:16px 18px;backdrop-filter:blur(12px);cursor:pointer;transition:all 0.25s;position:relative;overflow:hidden;}
+.stat-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--c,var(--cyan));border-radius:0 0 14px 14px;opacity:0.6;}
+.stat-card:hover{transform:translateY(-3px);background:var(--surface2);border-color:var(--border2);box-shadow:0 12px 30px rgba(0,0,0,0.35);}
+.stat-num{font-family:'JetBrains Mono',monospace;font-size:2rem;font-weight:500;color:var(--c,var(--cyan));line-height:1;}
+.stat-lbl{font-size:0.7rem;color:var(--text-muted);margin-top:5px;font-weight:600;text-transform:uppercase;letter-spacing:0.06em;}
+
+/* FILTER */
+.filter-section{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:18px 20px;margin-bottom:1.5rem;backdrop-filter:blur(12px);}
+.filter-row{display:flex;gap:10px;flex-wrap:wrap;align-items:flex-end;}
+.fg{display:flex;flex-direction:column;gap:5px;flex:1;min-width:170px;}
+.fl{font-size:0.68rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.07em;font-weight:600;}
+.inp{width:100%;background:rgba(0,0,0,0.3);border:1px solid var(--border);border-radius:9px;padding:9px 14px;color:var(--text);font-family:'DM Sans',sans-serif;font-size:0.87rem;outline:none;transition:all 0.18s;}
+.inp:focus{border-color:rgba(41,232,255,0.45);background:rgba(41,232,255,0.05);box-shadow:0 0 0 3px rgba(41,232,255,0.09);}
+.inp::placeholder{color:var(--text-muted);}
+.srch-wrap{position:relative;}.srch-wrap .inp{padding-left:36px;}
+.srch-ico{position:absolute;left:12px;top:50%;transform:translateY(-50%);color:var(--text-muted);font-size:14px;pointer-events:none;}
+.sel-wrap{position:relative;}
+.sel-wrap select{width:100%;background:rgba(0,0,0,0.3);border:1px solid var(--border);border-radius:9px;padding:9px 32px 9px 14px;color:var(--text);font-family:'DM Sans',sans-serif;font-size:0.87rem;outline:none;cursor:pointer;appearance:none;transition:all 0.18s;}
+.sel-wrap select:focus{border-color:rgba(41,232,255,0.45);background:rgba(41,232,255,0.05);}
+.sel-wrap select option{background:#10152e;color:var(--text);}
+.sel-wrap::after{content:"▾";position:absolute;right:11px;top:50%;transform:translateY(-50%);color:var(--text-muted);pointer-events:none;font-size:12px;}
+.clr-btn{padding:9px 14px;background:rgba(255,90,114,0.1);border:1px solid rgba(255,90,114,0.28);border-radius:9px;color:var(--red);font-size:0.83rem;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all 0.18s;white-space:nowrap;align-self:flex-end;}
+.clr-btn:hover{background:rgba(255,90,114,0.2);}
+.rc{font-size:0.79rem;color:var(--text-muted);margin-top:12px;display:flex;align-items:center;gap:8px;}
+.rc strong{color:var(--cyan);font-family:'JetBrains Mono',monospace;}
+
+/* VIEW TOGGLE */
+.view-toggle{display:flex;gap:3px;background:rgba(0,0,0,0.3);border:1px solid var(--border);border-radius:10px;padding:4px;width:fit-content;}
+.vbtn{padding:6px 14px;border-radius:7px;border:none;background:transparent;color:var(--text-muted);font-family:'DM Sans',sans-serif;font-size:0.83rem;cursor:pointer;transition:all 0.18s;}
+.vbtn.active{background:rgba(41,232,255,0.13);color:var(--cyan);}
+
+/* CARDS */
+.cards-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:14px;}
+.brand-card{background:var(--surface);border:1px solid var(--border);border-radius:15px;padding:18px;backdrop-filter:blur(10px);transition:all 0.28s cubic-bezier(.4,0,.2,1);cursor:pointer;position:relative;overflow:hidden;}
+.brand-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent 0%,var(--fc,var(--cyan)) 50%,transparent 100%);opacity:0;transition:opacity 0.28s;}
+.brand-card:hover{transform:translateY(-4px);background:var(--surface2);border-color:var(--border2);box-shadow:0 18px 40px rgba(0,0,0,0.45);}
+.brand-card:hover::before{opacity:1;}
+.bc-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px;}
+.bc-badge{font-size:0.64rem;font-weight:700;text-transform:uppercase;letter-spacing:0.09em;padding:4px 10px;border-radius:20px;}
+.bc-sn{font-family:'JetBrains Mono',monospace;font-size:0.68rem;color:var(--text-muted);}
+.bc-name{font-family:'Playfair Display',serif;font-size:1.03rem;font-weight:700;color:var(--text);margin-bottom:4px;line-height:1.3;}
+.bc-reg{font-family:'JetBrains Mono',monospace;font-size:0.72rem;color:var(--text-muted);margin-bottom:8px;}
+.bc-reg em{color:var(--amber);font-style:normal;}
+.bc-meta{display:grid;grid-template-columns:1fr 1fr;gap:5px;margin-bottom:8px;}
+.bc-meta-item{background:rgba(0,0,0,0.2);border-radius:7px;padding:5px 8px;}
+.bc-meta-lbl{font-size:0.58rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.06em;font-weight:600;}
+.bc-meta-val{font-size:0.75rem;color:var(--text-dim);margin-top:1px;line-height:1.3;}
+.bc-meta-val.accent{color:var(--amber);}
+.bc-full-row{grid-column:1/-1;}
+.bc-divider{height:1px;background:var(--border);margin:8px 0;}
+.bc-comp-lbl{font-size:0.62rem;text-transform:uppercase;letter-spacing:0.07em;color:var(--text-muted);font-weight:600;margin-bottom:4px;}
+.bc-comp{background:rgba(0,0,0,0.3);border-radius:8px;padding:8px 10px;font-family:'JetBrains Mono',monospace;font-size:0.69rem;color:var(--text-dim);line-height:1.6;border-left:2px solid var(--fc,var(--cyan));max-height:68px;overflow:hidden;position:relative;}
+.bc-comp::after{content:'';position:absolute;bottom:0;left:0;right:0;height:20px;background:linear-gradient(transparent,rgba(7,9,26,0.9));}
+
+/* LIST */
+.tbl-wrap{background:var(--surface);border:1px solid var(--border);border-radius:15px;overflow:hidden;backdrop-filter:blur(10px);}
+.dtbl{width:100%;border-collapse:collapse;font-size:0.82rem;}
+.dtbl thead tr{background:rgba(0,0,0,0.35);border-bottom:1px solid var(--border);}
+.dtbl th{padding:12px 13px;text-align:left;font-size:0.67rem;text-transform:uppercase;letter-spacing:0.07em;color:var(--text-muted);font-weight:600;white-space:nowrap;cursor:pointer;user-select:none;transition:color 0.15s;}
+.dtbl th:hover{color:var(--cyan);}
+.dtbl tbody tr{border-bottom:1px solid rgba(255,255,255,0.04);transition:background 0.15s;cursor:pointer;}
+.dtbl tbody tr:hover{background:rgba(255,255,255,0.04);}
+.dtbl tbody tr:last-child{border-bottom:none;}
+.dtbl td{padding:10px 13px;color:var(--text-dim);vertical-align:middle;}
+.td-mono{font-family:'JetBrains Mono',monospace;font-size:0.74rem;color:var(--text-muted);}
+.td-name{color:var(--text)!important;font-weight:500;}
+.td-reg{font-family:'JetBrains Mono',monospace;color:var(--amber)!important;font-size:0.78rem;}
+.td-trunc{max-width:180px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.td-cat{max-width:160px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:0.78rem;}
+
+/* PAGINATION */
+.pagination{display:flex;justify-content:center;align-items:center;gap:6px;margin-top:2rem;padding-bottom:2rem;flex-wrap:wrap;}
+.pgbtn{width:34px;height:34px;border-radius:8px;border:1px solid var(--border);background:var(--surface);color:var(--text-dim);font-size:0.83rem;cursor:pointer;transition:all 0.18s;display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;}
+.pgbtn:hover{background:var(--surface2);color:var(--text);}
+.pgbtn.active{background:rgba(41,232,255,0.13);border-color:rgba(41,232,255,0.3);color:var(--cyan);}
+.pgbtn:disabled{opacity:0.3;cursor:not-allowed;}
+.pg-info{font-size:0.78rem;color:var(--text-muted);font-family:'JetBrains Mono',monospace;padding:0 6px;}
+
+/* MODAL */
+.modal-overlay{position:fixed;inset:0;background:rgba(4,6,18,0.82);backdrop-filter:blur(10px);z-index:500;display:none;align-items:center;justify-content:center;padding:1.5rem;}
+.modal-overlay.open{display:flex;animation:mfade 0.2s ease;}
+@keyframes mfade{from{opacity:0}to{opacity:1}}
+@keyframes mup{from{opacity:0;transform:translateY(24px) scale(0.98)}to{opacity:1;transform:none}}
+.brand-modal{background:#0c0f24;border:1px solid rgba(255,255,255,0.12);border-radius:22px;width:100%;max-width:1100px;max-height:90vh;overflow:hidden;display:flex;flex-direction:column;animation:mup 0.26s ease;box-shadow:0 40px 100px rgba(0,0,0,0.7);}
+.bm-header{padding:26px 32px 20px;background:rgba(0,0,0,0.25);border-bottom:1px solid var(--border);flex-shrink:0;position:relative;}
+.bm-close{position:absolute;top:22px;right:22px;width:34px;height:34px;border-radius:9px;border:1px solid var(--border);background:var(--surface);color:var(--text-dim);font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all 0.18s;}
+.bm-close:hover{background:rgba(255,90,114,0.15);border-color:rgba(255,90,114,0.35);color:var(--red);}
+.bm-header-top{display:flex;align-items:flex-start;gap:16px;flex-wrap:wrap;}
+.bm-badge{font-size:0.68rem;font-weight:700;text-transform:uppercase;letter-spacing:0.09em;padding:5px 13px;border-radius:20px;white-space:nowrap;}
+.bm-sn{font-family:'JetBrains Mono',monospace;font-size:0.75rem;color:var(--text-muted);padding:5px 0;}
+.bm-name{font-family:'Playfair Display',serif;font-size:1.9rem;font-weight:900;background:linear-gradient(135deg,#fff 0%,var(--cyan) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;line-height:1.2;margin-top:10px;margin-bottom:5px;}
+.bm-reg{font-family:'JetBrains Mono',monospace;font-size:0.82rem;color:var(--text-muted);}
+.bm-reg em{color:var(--amber);font-style:normal;font-size:0.95rem;}
+.bm-body{padding:26px 32px;overflow-y:auto;flex:1;}
+.bm-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:16px;}
+.bm-field{background:rgba(0,0,0,0.25);border:1px solid var(--border);border-radius:12px;padding:13px 15px;transition:border-color 0.18s;}
+.bm-field:hover{border-color:var(--border2);}
+.bm-field.span2{grid-column:span 2;}
+.bm-field.span3{grid-column:1/-1;}
+.bm-fl{font-size:0.63rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--text-muted);font-weight:700;margin-bottom:6px;}
+.bm-fv{font-size:0.91rem;color:var(--text);line-height:1.55;}
+.bm-fv.mono{font-family:'JetBrains Mono',monospace;color:var(--amber);font-size:1rem;}
+.bm-fv.comp{font-family:'JetBrains Mono',monospace;font-size:0.78rem;color:var(--text-dim);line-height:1.8;}
+.bm-fv.na{color:var(--text-muted);font-style:italic;}
+.bm-fv.green{color:var(--green)!important;}
+.bm-fv.blue{color:var(--blue)!important;}
+.bm-field.comp-field{border-left:3px solid var(--cyan);}
+
+/* ALL BRANDS PAGE */
+.brands-section{margin-bottom:3rem;}
+.bs-header{display:flex;align-items:center;gap:14px;margin-bottom:1.4rem;padding-bottom:10px;border-bottom:1px solid rgba(255,255,255,0.07);}
+.bs-icon{font-size:1.5rem;}
+.bs-title{font-family:'Playfair Display',serif;font-size:1.35rem;font-weight:700;}
+.bs-count{font-family:'JetBrains Mono',monospace;font-size:0.75rem;color:var(--text-muted);background:rgba(0,0,0,0.35);padding:3px 11px;border-radius:20px;border:1px solid var(--border);}
+.bs-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:11px;}
+.bs-card{border-radius:12px;padding:15px;cursor:pointer;transition:all 0.22s;position:relative;overflow:hidden;}
+.bs-card:hover{transform:translateY(-3px);box-shadow:0 14px 32px rgba(0,0,0,0.5);}
+.bs-card-glow{position:absolute;top:0;right:0;width:70px;height:70px;border-radius:0 12px 0 70px;}
+.bs-sn{font-family:'JetBrains Mono',monospace;font-size:0.63rem;color:rgba(255,255,255,0.3);}
+.bs-reg{font-family:'JetBrains Mono',monospace;font-size:0.66rem;}
+.bs-name{font-family:'Playfair Display',serif;font-size:0.9rem;font-weight:700;color:#fff;margin:7px 0 5px;line-height:1.3;}
+.bs-detail{font-size:0.7rem;color:rgba(255,255,255,0.5);margin-bottom:3px;}
+.bs-comp{font-size:0.67rem;color:rgba(255,255,255,0.38);line-height:1.5;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;margin-top:4px;}
+
+/* MANAGE PAGE */
+.manage-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;max-width:860px;}
+.mgmt-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:26px;backdrop-filter:blur(10px);}
+.mgmt-icon{font-size:2rem;margin-bottom:12px;}
+.mgmt-title{font-size:1.05rem;font-weight:600;margin-bottom:8px;}
+.mgmt-desc{font-size:0.84rem;color:var(--text-muted);margin-bottom:20px;line-height:1.65;}
+.mgmt-btn{width:100%;padding:12px;border-radius:10px;border:1px solid var(--border);background:var(--surface);color:var(--text-dim);font-family:'DM Sans',sans-serif;font-size:0.88rem;font-weight:600;cursor:pointer;transition:all 0.2s;display:flex;align-items:center;justify-content:center;gap:8px;}
+.mgmt-btn.up{color:var(--cyan);border-color:rgba(41,232,255,0.3);background:rgba(41,232,255,0.08);}
+.mgmt-btn.up:hover{background:rgba(41,232,255,0.17);}
+.mgmt-btn.dl{color:var(--red);border-color:rgba(255,90,114,0.3);background:rgba(255,90,114,0.07);}
+.mgmt-btn.dl:hover{background:rgba(255,90,114,0.17);}
+
+/* AUTH/UPLOAD MODALS */
+.sm-modal{max-width:420px;}
+.pwd-title{font-size:1.1rem;font-weight:600;margin-top:6px;}
+.pwd-sub{font-size:0.8rem;color:var(--text-muted);margin-top:4px;}
+.pwd-inp-wrap{position:relative;margin:18px 0 10px;}
+.pwd-inp-wrap input{width:100%;background:rgba(0,0,0,0.35);border:1px solid var(--border);border-radius:10px;padding:13px 16px;color:var(--text);font-family:'JetBrains Mono',monospace;font-size:1rem;outline:none;letter-spacing:0.12em;transition:all 0.18s;}
+.pwd-inp-wrap input:focus{border-color:rgba(41,232,255,0.4);box-shadow:0 0 0 3px rgba(41,232,255,0.08);}
+.pwd-err{color:var(--red);font-size:0.79rem;margin-bottom:12px;display:none;}
+.pwd-err.show{display:block;}
+.big-btn{width:100%;padding:13px;background:linear-gradient(135deg,var(--violet),var(--cyan));border:none;border-radius:10px;color:#fff;font-size:0.92rem;font-weight:700;font-family:'DM Sans',sans-serif;cursor:pointer;transition:all 0.2s;letter-spacing:0.02em;}
+.big-btn:hover{opacity:0.9;transform:translateY(-1px);box-shadow:0 8px 20px rgba(155,109,255,0.3);}
+.upz{border:2px dashed rgba(41,232,255,0.28);border-radius:14px;padding:36px;text-align:center;background:rgba(41,232,255,0.03);cursor:pointer;transition:all 0.2s;}
+.upz:hover,.upz.dragover{border-color:rgba(41,232,255,0.55);background:rgba(41,232,255,0.07);}
+.upz-icon{font-size:2.2rem;margin-bottom:10px;}
+.upz-text{font-size:0.92rem;color:var(--text-dim);margin-bottom:5px;}
+.upz-sub{font-size:0.78rem;color:var(--text-muted);}
+#fileInput{display:none;}
+
+/* TOAST */
+.toast{position:fixed;bottom:1.8rem;right:1.8rem;padding:13px 18px;background:#0e1328;border:1px solid var(--border);border-radius:12px;font-size:0.87rem;color:var(--text);z-index:9999;animation:mup 0.28s ease;box-shadow:0 16px 40px rgba(0,0,0,0.5);display:flex;align-items:center;gap:9px;max-width:340px;}
+.toast.ok{border-color:rgba(34,232,160,0.4);}
+.toast.err{border-color:rgba(255,90,114,0.4);}
+.empty{text-align:center;padding:60px 20px;color:var(--text-muted);grid-column:1/-1;}
+.empty-ico{font-size:2.8rem;margin-bottom:14px;}
+.empty-t{font-size:1rem;color:var(--text-dim);margin-bottom:6px;}
+
+@media(max-width:900px){.bm-grid{grid-template-columns:1fr 1fr;}.bm-field.span3{grid-column:1/-1;}.bm-field.span2{grid-column:1/-1;}.manage-grid{grid-template-columns:1fr;}}
+@media(max-width:640px){.header{padding:0 1rem;flex-wrap:wrap;height:auto;padding:10px 1rem;gap:8px;}.header-nav .nav-btn span:last-child{display:none;}.main{padding:1rem;}.bm-grid{grid-template-columns:1fr;}.bm-name{font-size:1.4rem;}.brand-modal{max-height:95vh;}}
+</style>
+</head>
+<body>
+<div class="bg-layer"></div>
+<div id="app">
+
+<header class="header">
+  <div class="logo-wrap">
+    <div class="logo-icon">S</div>
+    <div class="logo-text">
+      <div class="logo-title">Shaigan Pharmaceuticals</div>
+      <div class="logo-sub">Registered · Not Marketed · Brands</div>
+    </div>
+  </div>
+  <nav class="header-nav">
+    <button class="nav-btn active" onclick="showPage('dashboard')" id="nav-dashboard">⬡ <span>Dashboard</span></button>
+    <button class="nav-btn" onclick="showPage('brands')" id="nav-brands">◈ <span>All Brands</span></button>
+    <button class="nav-btn" onclick="showPage('manage')" id="nav-manage">⚙ <span>Manage</span></button>
+  </nav>
+  <div class="hdr-actions">
+    <button class="hbtn upload" onclick="showUploadFlow()">⬆ Upload CSV</button>
+    <button class="hbtn del" onclick="showDeleteFlow()">⊘ Delete All</button>
+  </div>
+</header>
+
+<!-- DASHBOARD -->
+<div class="page active" id="page-dashboard">
+  <div class="main">
+    <div class="stats-bar" id="statsBar"></div>
+    <div class="filter-section">
+      <div class="filter-row">
+        <div class="fg" style="flex:2.5;min-width:220px;">
+          <div class="fl">🔍 Search</div>
+          <div class="srch-wrap">
+            <span class="srch-ico">⌕</span>
+            <input class="inp" type="text" id="searchInput" placeholder="Product name, composition, brand leader, indications..." oninput="applyFilters()">
+          </div>
+        </div>
+        <div class="fg">
+          <div class="fl">Dosage Form</div>
+          <div class="sel-wrap"><select id="filterForm" onchange="applyFilters()"></select></div>
+        </div>
+        <div class="fg">
+          <div class="fl">Category</div>
+          <div class="sel-wrap"><select id="filterCategory" onchange="applyFilters()"></select></div>
+        </div>
+        <div class="fg">
+          <div class="fl">Innovator Company</div>
+          <div class="sel-wrap"><select id="filterInnovator" onchange="applyFilters()"></select></div>
+        </div>
+        <button class="clr-btn" onclick="clearFilters()">✕ Clear</button>
+      </div>
+      <div class="rc">Showing <strong id="resultCount">0</strong> of <strong id="totalCount">0</strong> brands
+        <span id="activeFiltersNote" style="color:var(--amber);"></span>
+      </div>
+    </div>
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1.4rem;">
+      <div class="view-toggle">
+        <button class="vbtn active" onclick="setView('cards',this)">⊞ Cards</button>
+        <button class="vbtn" onclick="setView('list',this)">≡ List</button>
+      </div>
+      <span style="font-size:0.76rem;color:var(--text-muted);">Click any card to view full details</span>
+    </div>
+    <div id="cardsView"><div class="cards-grid" id="cardsGrid"></div></div>
+    <div id="listView" style="display:none;">
+      <div class="tbl-wrap">
+        <table class="dtbl">
+          <thead><tr id="tableHead"></tr></thead>
+          <tbody id="tableBody"></tbody>
+        </table>
+      </div>
+    </div>
+    <div class="pagination" id="pagination"></div>
+  </div>
+</div>
+
+<!-- ALL BRANDS -->
+<div class="page" id="page-brands">
+  <div class="main">
+    <div style="margin-bottom:2rem;">
+      <h1 style="font-family:'Playfair Display',serif;font-size:2rem;font-weight:900;background:linear-gradient(135deg,#fff,var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent;">All Registered Brands</h1>
+      <p style="color:var(--text-muted);margin-top:6px;font-size:0.88rem;">Complete registry of Shaigan's registered but not marketed pharmaceutical brands — grouped by dosage form</p>
+    </div>
+    <div id="allBrandsList"></div>
+  </div>
+</div>
+
+<!-- MANAGE -->
+<div class="page" id="page-manage">
+  <div class="main">
+    <div style="margin-bottom:2rem;">
+      <h1 style="font-family:'Playfair Display',serif;font-size:2rem;font-weight:900;color:var(--text);">Data Management</h1>
+      <p style="color:var(--text-muted);margin-top:6px;font-size:0.88rem;">Upload new CSV data or remove all records. All destructive actions are password protected.</p>
+    </div>
+    <div class="manage-grid">
+      <div class="mgmt-card">
+        <div class="mgmt-icon">⬆</div>
+        <div class="mgmt-title">Upload New Data</div>
+        <div class="mgmt-desc">Upload a CSV file to replace the current dataset. Supports any column structure including Category, Indications, Brand Leader, and Innovator Company fields.</div>
+        <button class="mgmt-btn up" onclick="showUploadFlow()">⬆ Upload CSV File</button>
+      </div>
+      <div class="mgmt-card" style="border-color:rgba(255,90,114,0.18);">
+        <div class="mgmt-icon">⊘</div>
+        <div class="mgmt-title" style="color:var(--red);">Delete All Data</div>
+        <div class="mgmt-desc">Permanently removes all current brand records from the system. This cannot be undone.</div>
+        <button class="mgmt-btn dl" onclick="showDeleteFlow()">⊘ Delete All Records</button>
+      </div>
+    </div>
+    <div style="margin-top:20px;background:var(--surface);border:1px solid var(--border);border-radius:15px;padding:22px;max-width:860px;">
+      <div style="font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--text-muted);margin-bottom:14px;">Current Dataset Summary</div>
+      <div id="manageSummary" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px;"></div>
+    </div>
+  </div>
+</div>
+
+<!-- BRAND MODAL -->
+<div class="modal-overlay" id="brandModal" onclick="closeBrandModalBg(event)">
+  <div class="brand-modal" id="brandModalBox">
+    <div class="bm-header" id="bmHeader">
+      <button class="bm-close" onclick="closeBrandModal()">✕</button>
+      <div class="bm-header-top">
+        <span class="bm-badge" id="bmBadge"></span>
+        <span class="bm-sn" id="bmSn"></span>
+      </div>
+      <div class="bm-name" id="bmName"></div>
+      <div class="bm-reg" id="bmReg"></div>
+    </div>
+    <div class="bm-body">
+      <div class="bm-grid" id="bmGrid"></div>
+    </div>
+  </div>
+</div>
+
+<!-- AUTH MODAL -->
+<div class="modal-overlay" id="pwdModal" onclick="if(event.target===this)this.classList.remove('open')">
+  <div class="brand-modal sm-modal">
+    <div class="bm-header">
+      <button class="bm-close" onclick="document.getElementById('pwdModal').classList.remove('open')">✕</button>
+      <div style="font-size:1.8rem;margin-bottom:8px;" id="pwdIcon">🔐</div>
+      <div class="pwd-title" id="pwdTitle">Authentication Required</div>
+      <div class="pwd-sub" id="pwdSub">Enter password to continue</div>
+    </div>
+    <div class="bm-body">
+      <div class="pwd-inp-wrap">
+        <input type="password" id="pwdInput" placeholder="Enter password..." onkeydown="if(event.key==='Enter')submitPwd()">
+      </div>
+      <div class="pwd-err" id="pwdErr">Incorrect password. Please try again.</div>
+      <button class="big-btn" onclick="submitPwd()">Authenticate →</button>
+    </div>
+  </div>
+</div>
+
+<!-- UPLOAD MODAL -->
+<div class="modal-overlay" id="uploadModal" onclick="if(event.target===this)this.classList.remove('open')">
+  <div class="brand-modal sm-modal">
+    <div class="bm-header">
+      <button class="bm-close" onclick="document.getElementById('uploadModal').classList.remove('open')">✕</button>
+      <div style="font-size:1.8rem;margin-bottom:8px;">⬆</div>
+      <div class="pwd-title">Upload CSV Data</div>
+      <div class="pwd-sub">New data will replace the current dataset</div>
+    </div>
+    <div class="bm-body">
+      <div class="upz" id="upz" onclick="document.getElementById('fileInput').click()" ondragover="handleDragOver(event)" ondragleave="handleDragLeave()" ondrop="handleDrop(event)">
+        <div class="upz-icon">📋</div>
+        <div class="upz-text">Drop your CSV here, or click to browse</div>
+        <div class="upz-sub">Supports .csv with SNo, RegNo, DosageForm, ProductName, PackSize, Composition, Category, Indications, BrandLeader, InnovatorCompany columns</div>
+      </div>
+      <input type="file" id="fileInput" accept=".csv" onchange="handleFileSelect(event)">
+      <div id="upStatus" style="margin-top:14px;display:none;"></div>
+      <div id="upPreview" style="margin-top:12px;display:none;"></div>
+      <button id="upConfirmBtn" class="big-btn" style="margin-top:14px;display:none;" onclick="confirmUpload()">✓ Confirm Upload</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const INITIAL_DATA = [{"S#": 1, "Reg. No.": 13941, "Dosage form": "ORALS", "Products Name": "Acetosol Tablets", "Pack Size": "100's", "Composition": "Each tablet contains:- Paracetamol, 500mg (USP Specifications)", "Category": "Analgesics / Antipyretics", "Indications": "Fever, mild to moderate pain", "Brand Leader": "Panadol", "Innovator Company": "GSK"}, {"S#": 2, "Reg. No.": 26999, "Dosage form": "ORALS", "Products Name": "Acetosol Syrup", "Pack Size": "60ml 90ml 120ml", "Composition": "Each 5ml of oral solution contains:- Paracetamol, , , 120mg (USP Specifiations)", "Category": "Analgesics / Antipyretics", "Indications": "Fever, mild to moderate pain in children", "Brand Leader": "Panadol Syrup", "Innovator Company": "GSK"}, {"S#": 3, "Reg. No.": 27000, "Dosage form": "ORALS", "Products Name": "Acetosol Drops", "Pack Size": "15ml + Dropper", "Composition": "Each 5ml contains:- Paracetamol, 60mg/5ml", "Category": "Analgesics / Antipyretics", "Indications": "Fever in infants", "Brand Leader": "Panadol Drops", "Innovator Company": "GSK"}, {"S#": 4, "Reg. No.": 114109, "Dosage form": "ORALS", "Products Name": "Admit XR 50mg/500mg Tablet", "Pack Size": "14's", "Composition": "Each film coated tablet contains:-   Sitagliptin as Phosphate Monohydrate, , .50mg (Immediate release cote) Metformin HCI, 500mg (Extended release core) BP Specifications)", "Category": "Endocrinology / Diabetology", "Indications": "Type 2 diabetes mellitus", "Brand Leader": "Janumet XR", "Innovator Company": "MSD / Merck"}, {"S#": 5, "Reg. No.": 116395, "Dosage form": "ORALS", "Products Name": "Admit XR 50mg/1000mg Tablet", "Pack Size": "14's", "Composition": "Each film coated tablet contains:-   Sitagliptin as Phosphate Monohydrate, , .50mg (Immediate release cote) Metformin HCI, 1000mg (Extended release core) BP Specifications)", "Category": "Endocrinology / Diabetology", "Indications": "Type 2 diabetes mellitus", "Brand Leader": "Janumet XR", "Innovator Company": "MSD / Merck"}, {"S#": 6, "Reg. No.": 114110, "Dosage form": "ORALS", "Products Name": "Admit XR 100mg/1000mg Tablet", "Pack Size": "14's", "Composition": "Each film coated tablet contains:-   Sitagliptin as Phosphate Monohydrate, , .100mg (Immediate release cote) Metformin HCI, 1000mg (Extended release core) BP Specifications)", "Category": "Endocrinology / Diabetology", "Indications": "Type 2 diabetes mellitus", "Brand Leader": "Janumet XR", "Innovator Company": "MSD / Merck"}, {"S#": 7, "Reg. No.": 19300, "Dosage form": "ORALS", "Products Name": "Amlopin-5mg Tablets", "Pack Size": "20's", "Composition": "Each tablets contains :- Amlodipine (as Basylate), 5mg  (USP Specs).", "Category": "Cardiology", "Indications": "Hypertension, angina pectoris", "Brand Leader": "Norvasc", "Innovator Company": "Pfizer"}, {"S#": 8, "Reg. No.": 102600, "Dosage form": "ORALS", "Products Name": "Anbix 60mg Tablet", "Pack Size": "10's", "Composition": "Each film coated tablet contains:- Etroicoxib, .60mg (As per * Innovator's Specifications)", "Category": "Rheumatology / Pain Management", "Indications": "Osteoarthritis, rheumatoid arthritis, acute gout, pain", "Brand Leader": "Arcoxia", "Innovator Company": "MSD / Merck"}, {"S#": 9, "Reg. No.": 57503, "Dosage form": "ORALS", "Products Name": "Anso Capsules 30mg", "Pack Size": "14's", "Composition": "Each Capsules contains:-  Lansoprazole as delayed released pellets of..30mg.  (USP Specifications).", "Category": "Gastroenterology", "Indications": "GERD, peptic ulcer, H. pylori eradication", "Brand Leader": "Prevacid", "Innovator Company": "TAP Pharmaceutical / AstraZeneca"}, {"S#": 10, "Reg. No.": 57504, "Dosage form": "ORALS", "Products Name": "Anso Capsules 15mg", "Pack Size": "1x10's", "Composition": "Each Capsules contains:-  Lansoprazole as delayed released pellets of..15mg.  (USP Specifications).", "Category": "Gastroenterology", "Indications": "GERD, peptic ulcer, H. pylori eradication", "Brand Leader": "Prevacid", "Innovator Company": "TAP Pharmaceutical / AstraZeneca"}, {"S#": 11, "Reg. No.": 123635, "Dosage form": "ORALS", "Products Name": "Apixan 2.5mg Tablet", "Pack Size": "10's 14's", "Composition": "Each film coated tablet contains:- Apixaban, .2.5mg (As per Innovator's Specifiations)", "Category": "Cardiology / Hematology", "Indications": "Prevention of stroke in atrial fibrillation, DVT/PE treatment", "Brand Leader": "Eliquis", "Innovator Company": "Bristol-Myers Squibb / Pfizer"}, {"S#": 12, "Reg. No.": 123636, "Dosage form": "ORALS", "Products Name": "Apixan 5mg Tablet", "Pack Size": "10's 14's", "Composition": "Each film coated tablet contains:- Apixaban, .5mg (As per Innovator's Specifiations)", "Category": "Cardiology / Hematology", "Indications": "Prevention of stroke in atrial fibrillation, DVT/PE treatment", "Brand Leader": "Eliquis", "Innovator Company": "Bristol-Myers Squibb / Pfizer"}, {"S#": 13, "Reg. No.": 123491, "Dosage form": "ORALS", "Products Name": "Auramycin 200mg/5ml Dry Suspension", "Pack Size": "50's", "Composition": "Each 5ml contains:- Erythromycin Ethylsuccinate eq to. Erythromycin, 200mg (USP Specifications)", "Category": "Antibiotics", "Indications": "Respiratory, skin, and soft tissue infections", "Brand Leader": "Erythrocin", "Innovator Company": "Abbott"}, {"S#": 14, "Reg. No.": 133867, "Dosage form": "ORALS", "Products Name": "Auramycin 250mg Tablet", "Pack Size": "1x10's", "Composition": "Each film coated tablet contains: Erythromycin stearate eq. to Erythromycin ............ 250mg (USP Specifications)", "Category": "Antibiotics", "Indications": "Respiratory, skin, and soft tissue infections", "Brand Leader": "Erythrocin", "Innovator Company": "Abbott"}, {"S#": 15, "Reg. No.": 102602, "Dosage form": "ORALS", "Products Name": "Bafen 10mg Tablets", "Pack Size": "30's", "Composition": "Each tablet contains:-  Baclofen, 10mg (USP Specifications)", "Category": "Neurology", "Indications": "Muscle spasticity, multiple sclerosis, spinal cord injury", "Brand Leader": "Lioresal", "Innovator Company": "Novartis"}, {"S#": 16, "Reg. No.": 90014, "Dosage form": "ORALS", "Products Name": "Bilex Capsules", "Pack Size": "10's", "Composition": "Each Capsule contains: Ursodeoxycholic acid, 250mg (BP Specifications)", "Category": "Gastroenterology / Hepatology", "Indications": "Primary biliary cirrhosis, gallstones", "Brand Leader": "Ursofalk", "Innovator Company": "Dr. Falk Pharma"}, {"S#": 17, "Reg. No.": 90015, "Dosage form": "ORALS", "Products Name": "Bilex Forte Capsules", "Pack Size": "10's", "Composition": "Each Capsule contains: Ursodeoxycholic acid, 500mg (BP Specifications)", "Category": "Gastroenterology / Hepatology", "Indications": "Primary biliary cirrhosis, gallstones", "Brand Leader": "Ursofalk", "Innovator Company": "Dr. Falk Pharma"}, {"S#": 18, "Reg. No.": 102596, "Dosage form": "ORALS", "Products Name": "Bitnol 1000mg Tablet", "Pack Size": "14's", "Composition": "Each extended release tablet contains: Ranolazine, 1000mg (As per *Innovator's Specifications)", "Category": "Cardiology", "Indications": "Chronic stable angina", "Brand Leader": "Ranexa", "Innovator Company": "Gilead Sciences"}, {"S#": 19, "Reg. No.": 102597, "Dosage form": "ORALS", "Products Name": "Bitnol 500mg Tablet", "Pack Size": "14's", "Composition": "Each extended release tablet contains: Ranolazine, 500mg (As per *Innovator's Specifications)", "Category": "Cardiology", "Indications": "Chronic stable angina", "Brand Leader": "Ranexa", "Innovator Company": "Gilead Sciences"}, {"S#": 20, "Reg. No.": 121498, "Dosage form": "ORALS", "Products Name": "Bisoprol 2.5mg Tablets", "Pack Size": "14's", "Composition": "Each film coated tablet contains:- Bisoprolol Fumarate, .2.5mg USP Specificataions", "Category": "Cardiology", "Indications": "Hypertension, heart failure, angina", "Brand Leader": "Concor", "Innovator Company": "Merck KGaA"}, {"S#": 21, "Reg. No.": 121499, "Dosage form": "ORALS", "Products Name": "Bisoprol 5mg Tablets", "Pack Size": "20's", "Composition": "Each film coated tablet contains:- Bisoprolol Fumarate, .5mg USP Specificataions", "Category": "Cardiology", "Indications": "Hypertension, heart failure, angina", "Brand Leader": "Concor", "Innovator Company": "Merck KGaA"}, {"S#": 22, "Reg. No.": 121500, "Dosage form": "ORALS", "Products Name": "Bisoprol 10mg Tablets", "Pack Size": "20's", "Composition": "Each film coated tablet contains:- Bisoprolol Fumarate, .10mg USP Specificataions", "Category": "Cardiology", "Indications": "Hypertension, heart failure, angina", "Brand Leader": "Concor", "Innovator Company": "Merck KGaA"}, {"S#": 23, "Reg. No.": 101538, "Dosage form": "ORALS", "Products Name": "Buxel 40mg Tablet", "Pack Size": "20's", "Composition": "Each film coated tablet contains:-   Febuxostat, ..., 40mg  (As per *innovators specifications)", "Category": "Rheumatology", "Indications": "Chronic hyperuricemia, gout", "Brand Leader": "Uloric / Adenuric", "Innovator Company": "Takeda"}, {"S#": 24, "Reg. No.": 101539, "Dosage form": "ORALS", "Products Name": "Buxel 80mg Tablet", "Pack Size": "20's", "Composition": "Each film coated tablet contains:-   Febuxostat, ..., 80mg  (As per *innovators specifications)", "Category": "Rheumatology", "Indications": "Chronic hyperuricemia, gout", "Brand Leader": "Uloric / Adenuric", "Innovator Company": "Takeda"}, {"S#": 25, "Reg. No.": 26602, "Dosage form": "ORALS", "Products Name": "Ceradin Suspension", "Pack Size": "60ml", "Composition": "Each 5ml contains:- Cephradine, 125mg (BP Specifications)", "Category": "Antibiotics", "Indications": "Respiratory, urinary, skin infections", "Brand Leader": "Velosef", "Innovator Company": "Bristol-Myers Squibb"}, {"S#": 26, "Reg. No.": 26603, "Dosage form": "ORALS", "Products Name": "Ceradin Suspension", "Pack Size": "60ml", "Composition": "Each 5ml contains:- Cephradine, 250mg (BP Specifications)", "Category": "Antibiotics", "Indications": "Respiratory, urinary, skin infections", "Brand Leader": "Velosef", "Innovator Company": "Bristol-Myers Squibb"}, {"S#": 27, "Reg. No.": 51101, "Dosage form": "ORALS", "Products Name": "Ceradin-250 Capsule", "Pack Size": "12's", "Composition": "Each capsule contains:- Cephradine, 250mg (BP Specifications)", "Category": "Antibiotics", "Indications": "Respiratory, urinary, skin infections", "Brand Leader": "Velosef", "Innovator Company": "Bristol-Myers Squibb"}, {"S#": 28, "Reg. No.": 51103, "Dosage form": "ORALS", "Products Name": "Ceradin-500 Capsule", "Pack Size": "12's", "Composition": "Each capsule contains:- Cephradine, 500mg (BP Specifications)", "Category": "Antibiotics", "Indications": "Respiratory, urinary, skin infections", "Brand Leader": "Velosef", "Innovator Company": "Bristol-Myers Squibb"}, {"S#": 29, "Reg. No.": 25947, "Dosage form": "ORALS", "Products Name": "Clovir Suspension", "Pack Size": "60ml", "Composition": "Each 5ml contains:- Acyclovir, 200mg/5ml (USP Specifications)", "Category": "Antivirals / Dermatology", "Indications": "Herpes simplex, herpes zoster", "Brand Leader": "Zovirax", "Innovator Company": "GSK"}, {"S#": 30, "Reg. No.": 25948, "Dosage form": "ORALS", "Products Name": "Clovir Tablets", "Pack Size": "25's", "Composition": "Each tablet contains:-  Acyclovir, 200mg (USP Specifications)", "Category": "Antivirals / Dermatology", "Indications": "Herpes simplex, herpes zoster", "Brand Leader": "Zovirax", "Innovator Company": "GSK"}, {"S#": 31, "Reg. No.": 25941, "Dosage form": "ORALS", "Products Name": "Clozox 100mg Tablets", "Pack Size": "6's", "Composition": "Each tablet contains:- Clotrimazole, , 100mg", "Category": "Gynecology / Antifungals", "Indications": "Vaginal candidiasis", "Brand Leader": "Canesten", "Innovator Company": "Bayer"}, {"S#": 32, "Reg. No.": 28730, "Dosage form": "ORALS", "Products Name": "Cecodin Tablet", "Pack Size": "10x10's", "Composition": "Each film coated tablet contians:- Paracetamol 500mg ,  Codeine Phosphate Hemihydrate, , 15mg  (USP Specifications)", "Category": "Analgesics", "Indications": "Moderate to severe pain", "Brand Leader": "Tylenol with Codeine", "Innovator Company": "Janssen / McNeil"}, {"S#": 33, "Reg. No.": 41854, "Dosage form": "ORALS", "Products Name": "Cefdin Capsules", "Pack Size": "6's", "Composition": "Each capsule contians:- Cefdinir, , 100mg (USP Specifications)", "Category": "Antibiotics", "Indications": "Respiratory, skin, ENT infections", "Brand Leader": "Omnicef", "Innovator Company": "Abbott"}, {"S#": 34, "Reg. No.": 49139, "Dosage form": "ORALS", "Products Name": "Cefdin Capsules", "Pack Size": "10's", "Composition": "Each capsule contians:- Cefdinir, , 300mg (USP Specifications)", "Category": "Antibiotics", "Indications": "Respiratory, skin, ENT infections", "Brand Leader": "Omnicef", "Innovator Company": "Abbott"}, {"S#": 35, "Reg. No.": 41922, "Dosage form": "ORALS", "Products Name": "Cefdin Dry Powder for Suspension", "Pack Size": "60ml", "Composition": "Each ml contians:- Cefdinir, , 50mg/5ml", "Category": "Antibiotics", "Indications": "Respiratory, skin, ENT infections in children", "Brand Leader": "Omnicef", "Innovator Company": "Abbott"}, {"S#": 36, "Reg. No.": 49137, "Dosage form": "ORALS", "Products Name": "Cefdin Dry Suspension", "Pack Size": "60ml", "Composition": "Each 5ml contians:- Cefdinir, , 125mg (USP Specifications)", "Category": "Antibiotics", "Indications": "Respiratory, skin, ENT infections in children", "Brand Leader": "Omnicef", "Innovator Company": "Abbott"}, {"S#": 37, "Reg. No.": 49138, "Dosage form": "ORALS", "Products Name": "Cefdin Dry Suspension", "Pack Size": "60ml", "Composition": "Each 5ml contians:- Cefdinir, , 250mg (USP Specifications)", "Category": "Antibiotics", "Indications": "Respiratory, skin, ENT infections in children", "Brand Leader": "Omnicef", "Innovator Company": "Abbott"}, {"S#": 38, "Reg. No.": 121568, "Dosage form": "ORALS", "Products Name": "Zeflox 250mg Tablets", "Pack Size": "10's", "Composition": "Each film coated tablet contains:- Ciprofloxacin HCI eq. to Ciprofloxacin, , .250mg (USP Specifications)", "Category": "Antibiotics", "Indications": "Urinary, respiratory, GI, skin infections", "Brand Leader": "Cipro", "Innovator Company": "Bayer"}, {"S#": 39, "Reg. No.": 121569, "Dosage form": "ORALS", "Products Name": "Zeflox 500mg Tablets", "Pack Size": "10's", "Composition": "Each film coated tablet contains:- Ciprofloxacin HCI eq. to Ciprofloxacin, , .500mg (USP Specifications)", "Category": "Antibiotics", "Indications": "Urinary, respiratory, GI, skin infections", "Brand Leader": "Cipro", "Innovator Company": "Bayer"}, {"S#": 40, "Reg. No.": 131724, "Dosage form": "ORALS", "Products Name": "Zeflox 250mg/5ml Suspension", "Pack Size": "30ml", "Composition": "Each 5ml contains: Ciprofloxacin Taste Masked Granules eq. to Ciprofloxacin .,  250mg Diluent: (As per Innovator's) Medium chain triglycerides, Sucrose, lecithin, water & strawberry flavor (USP Specifications)", "Category": "Antibiotics", "Indications": "Urinary, respiratory, GI, skin infections in children", "Brand Leader": "Cipro", "Innovator Company": "Bayer"}, {"S#": 41, "Reg. No.": 131725, "Dosage form": "ORALS", "Products Name": "Zeflox 500mg/5ml Suspension", "Pack Size": "30ml", "Composition": "Each 5ml contains: Ciprofloxacin Taste Masked Granules eq. to Ciprofloxacin .,  500mg Diluent:(As per Innovator's) Medium chain triglycerides, Sucrose, lecithin, water & strawberry flavor (USP Specifications)", "Category": "Antibiotics", "Indications": "Urinary, respiratory, GI, skin infections in children", "Brand Leader": "Cipro", "Innovator Company": "Bayer"}, {"S#": 42, "Reg. No.": 98355, "Dosage form": "ORALS", "Products Name": "Declawin 60mg Tablets", "Pack Size": "28's", "Composition": "Each film coated tablet contains:-  Daclatasvir  (asDihydrochloride), , .60mg  (As per *Innovator's Specifications)", "Category": "Hepatology / Antivirals", "Indications": "Chronic Hepatitis C (HCV)", "Brand Leader": "Daklinza", "Innovator Company": "Bristol-Myers Squibb"}, {"S#": 43, "Reg. No.": 101741, "Dosage form": "ORALS", "Products Name": "Diasar HCT 5/160/12.5 Tablets", "Pack Size": "14's", "Composition": "Each film-coated tablet contains:-   Amlodipine as Besylate, , ., 5mg Valsartan, , , ...160mg  Hydrochlorothiazide, , , , .12.5mg (USP Specifications)", "Category": "Cardiology", "Indications": "Hypertension (triple combination)", "Brand Leader": "Exforge HCT", "Innovator Company": "Novartis"}, {"S#": 44, "Reg. No.": 101742, "Dosage form": "ORALS", "Products Name": "Diasar HCT 10/320/25 Tablets", "Pack Size": "14's", "Composition": "Each film-coated tablet contains:-   Amlodipine as Besylate, , ., 10mg Valsartan, , , ...320mg  Hydrochlorothiazide, , , , .25mg (USP Specifications)", "Category": "Cardiology", "Indications": "Hypertension (triple combination)", "Brand Leader": "Exforge HCT", "Innovator Company": "Novartis"}, {"S#": 45, "Reg. No.": 101743, "Dosage form": "ORALS", "Products Name": "Diasar HCT 10/160/25 Tablets", "Pack Size": "14's", "Composition": "Each film-coated tablet contains:-   Amlodipine as Besylate, , ., 10mg Valsartan, , , ...160mg  Hydrochlorothiazide, , , , .25mg (USP Specifications)", "Category": "Cardiology", "Indications": "Hypertension (triple combination)", "Brand Leader": "Exforge HCT", "Innovator Company": "Novartis"}, {"S#": 46, "Reg. No.": 101744, "Dosage form": "ORALS", "Products Name": "Diasar HCT 5/160/25 Tablets", "Pack Size": "14's", "Composition": "Each film-coated tablet contains:-   Amlodipine as Besylate, , ., 5mg Valsartan, , , ...160mg  Hydrochlorothiazide, , , , .25mg (USP Specifications)", "Category": "Cardiology", "Indications": "Hypertension (triple combination)", "Brand Leader": "Exforge HCT", "Innovator Company": "Novartis"}, {"S#": 47, "Reg. No.": 101745, "Dosage form": "ORALS", "Products Name": "Diasar HCT 10/160/12.5mg Tablets", "Pack Size": "14's", "Composition": "Each film-coated tablet contains:-   Amlodipine as Besylate, , ., 10mg Valsartan, , , ...160mg  Hydrochlorothiazide, , , , .12.5mg (USP Specifications)", "Category": "Cardiology", "Indications": "Hypertension (triple combination)", "Brand Leader": "Exforge HCT", "Innovator Company": "Novartis"}, {"S#": 48, "Reg. No.": 103529, "Dosage form": "ORALS", "Products Name": "Dibmet XR 500mg", "Pack Size": "50's", "Composition": "Each extended realese tablet contains:- Metformin HCI, 500mg (USP Specifications)", "Category": "Endocrinology / Diabetology", "Indications": "Type 2 diabetes mellitus", "Brand Leader": "Glucophage XR", "Innovator Company": "Merck / BMS"}, {"S#": 49, "Reg. No.": 75353, "Dosage form": "ORALS", "Products Name": "Ebone Tablets", "Pack Size": "1's", "Composition": "Each tablet contains:- Ibandronate Sodium Monohydrate 168.75mg eq to Ibandronate 150mg (Shaigan 's Specs.)", "Category": "Bone & Metabolic", "Indications": "Osteoporosis in postmenopausal women", "Brand Leader": "Boniva / Bonviva", "Innovator Company": "Roche / GSK"}, {"S#": 50, "Reg. No.": 49151, "Dosage form": "ORALS", "Products Name": "Ecad Tablets", "Pack Size": "30's", "Composition": "Each tablet contains:-Elemental Calcium, .400mg. Vitamin D, , 100 IU.", "Category": "Bone & Metabolic", "Indications": "Calcium and Vitamin D deficiency, osteoporosis", "Brand Leader": "Calcichew D3", "Innovator Company": "Shire / Nycomed"}, {"S#": 51, "Reg. No.": 90011, "Dosage form": "ORALS", "Products Name": "Embex  Tablets", "Pack Size": "10's 4x7's", "Composition": "Each film coated tablet contains:- Rivaroxaban, 10mg  (USP Specifications)", "Category": "Cardiology / Hematology", "Indications": "DVT prevention, AF stroke prevention, PE treatment", "Brand Leader": "Xarelto", "Innovator Company": "Bayer / Janssen"}, {"S#": 52, "Reg. No.": 90009, "Dosage form": "ORALS", "Products Name": "Embex Forte Tablets", "Pack Size": "14's 4x7's", "Composition": "Each film coated tablet contains:- Rivaroxaban, 15mg  (USP Specifications)", "Category": "Cardiology / Hematology", "Indications": "DVT/PE treatment and prevention", "Brand Leader": "Xarelto", "Innovator Company": "Bayer / Janssen"}, {"S#": 53, "Reg. No.": 90010, "Dosage form": "ORALS", "Products Name": "Embex DS Tablets", "Pack Size": "14's 4x7's", "Composition": "Each film coated tablet contains:- Rivaroxaban, 20mg  (USP Specifications)", "Category": "Cardiology / Hematology", "Indications": "DVT/PE treatment and prevention", "Brand Leader": "Xarelto", "Innovator Company": "Bayer / Janssen"}, {"S#": 54, "Reg. No.": 110794, "Dosage form": "ORALS", "Products Name": "Emdagan Plus 5/850 Tablets", "Pack Size": "14's", "Composition": "Each film coated tablet conatains:- Empagliflozin, .5mg Metformin HCI, 850mg (As per Innovator Specifications)", "Category": "Endocrinology / Diabetology", "Indications": "Type 2 diabetes mellitus", "Brand Leader": "Synjardy", "Innovator Company": "Boehringer Ingelheim / Eli Lilly"}, {"S#": 55, "Reg. No.": 110797, "Dosage form": "ORALS", "Products Name": "Emdagan Plus 12.5/850 Tablets", "Pack Size": "14's", "Composition": "Each film coated tablet conatains:- Empagliflozin, .12.5mg Metformin HCI, 850mg (As per Innovator Specifications)", "Category": "Endocrinology / Diabetology", "Indications": "Type 2 diabetes mellitus", "Brand Leader": "Synjardy", "Innovator Company": "Boehringer Ingelheim / Eli Lilly"}, {"S#": 56, "Reg. No.": 123495, "Dosage form": "ORALS", "Products Name": "Emdagan Plus XR 5/1000 Tablets", "Pack Size": "10's", "Composition": "Each film coated tablet contains:- Empagliflozin, .5mg (as immediate release coating) Metformin HCI, 1000mg (as extended release core) (As per Innovator Specifications)", "Category": "Endocrinology / Diabetology", "Indications": "Type 2 diabetes mellitus", "Brand Leader": "Synjardy XR", "Innovator Company": "Boehringer Ingelheim / Eli Lilly"}, {"S#": 57, "Reg. No.": 123496, "Dosage form": "ORALS", "Products Name": "Emdagan Plus XR 10/1000 Tablets", "Pack Size": "10's", "Composition": "Each film coated tablet contains:- Empagliflozin, .10mg (as immediate release coating) Metformin HCI, 1000mg (as extended release core) (As per Innovator Specifications)", "Category": "Endocrinology / Diabetology", "Indications": "Type 2 diabetes mellitus", "Brand Leader": "Synjardy XR", "Innovator Company": "Boehringer Ingelheim / Eli Lilly"}, {"S#": 58, "Reg. No.": 123497, "Dosage form": "ORALS", "Products Name": "Emdagan Plus XR 12.5/1000 Tablets", "Pack Size": "10's", "Composition": "Each film coated tablet contains:- Empagliflozin, .12.5mg (as immediate release coating) Metformin HCI, 1000mg (as extended release core) (As per Innovator Specifications)", "Category": "Endocrinology / Diabetology", "Indications": "Type 2 diabetes mellitus", "Brand Leader": "Synjardy XR", "Innovator Company": "Boehringer Ingelheim / Eli Lilly"}, {"S#": 59, "Reg. No.": 123498, "Dosage form": "ORALS", "Products Name": "Emdagan Plus XR 25/1000 Tablets", "Pack Size": "10's", "Composition": "Each film coated tablet contains:- Empagliflozin, .25mg (as immediate release coating) Metformin HCI, 1000mg (as extended release core) (As per Innovator Specifications)", "Category": "Endocrinology / Diabetology", "Indications": "Type 2 diabetes mellitus", "Brand Leader": "Synjardy XR", "Innovator Company": "Boehringer Ingelheim / Eli Lilly"}, {"S#": 60, "Reg. No.": 26642, "Dosage form": "ORALS", "Products Name": "Enaril-10 Tablets", "Pack Size": "20's", "Composition": "Each tablet contains:- Enalapril Maleate. 10mg (USP Specifications)", "Category": "Cardiology", "Indications": "Hypertension, heart failure, LV dysfunction", "Brand Leader": "Vasotec / Renitec", "Innovator Company": "MSD / Merck"}, {"S#": 61, "Reg. No.": 26641, "Dosage form": "ORALS", "Products Name": "Enaril-5 Tablets", "Pack Size": "20's", "Composition": "Each tablet contains:- Enalapril Maleate. 5mg (USP Specifications)", "Category": "Cardiology", "Indications": "Hypertension, heart failure, LV dysfunction", "Brand Leader": "Vasotec / Renitec", "Innovator Company": "MSD / Merck"}, {"S#": 62, "Reg. No.": 18672, "Dosage form": "ORALS", "Products Name": "Ergomin Tablets", "Pack Size": "15's", "Composition": "Each film coated tablets contains :- Methylergonovine Maleate,  0.125mg (USP Specifications)", "Category": "Gynecology / Obstetrics", "Indications": "Postpartum uterine atony and hemorrhage", "Brand Leader": "Methergine", "Innovator Company": "Novartis"}, {"S#": 63, "Reg. No.": 52624, "Dosage form": "ORALS", "Products Name": "Esso-20 Tablets", "Pack Size": "14's", "Composition": "Each enteric coated tablet contains:- Esomeprazole magnesium Trihydrate eq. to Esomeprazole, ..20mg (BP Specifications)", "Category": "Gastroenterology", "Indications": "GERD, peptic ulcer, Zollinger-Ellison syndrome", "Brand Leader": "Nexium", "Innovator Company": "AstraZeneca"}, {"S#": 64, "Reg. No.": 52625, "Dosage form": "ORALS", "Products Name": "Esso-40 Tablets", "Pack Size": "14's", "Composition": "Each enteric coated tablet contains:- Esomeprazole magnesium Trihydrate eq. to Esomeprazole, ..40mg (BP Specifications)", "Category": "Gastroenterology", "Indications": "GERD, peptic ulcer, Zollinger-Ellison syndrome", "Brand Leader": "Nexium", "Innovator Company": "AstraZeneca"}, {"S#": 65, "Reg. No.": 84374, "Dosage form": "ORALS", "Products Name": "Endex Tablet", "Pack Size": "3x10's", "Composition": "Each tablet contains:- Tibolone, , .2.5mg   (BP Specifications)", "Category": "Gynecology / HRT", "Indications": "Menopausal symptoms, osteoporosis prevention", "Brand Leader": "Livial", "Innovator Company": "Organon"}, {"S#": 66, "Reg. No.": 26638, "Dosage form": "ORALS", "Products Name": "Fudic Suspension", "Pack Size": "90ml", "Composition": "Each 5ml contains:- Sodium Fusidate,  250 mg/5ml", "Category": "Antibiotics / Dermatology", "Indications": "Skin and soft tissue infections (Staphylococcal)", "Brand Leader": "Fucidin", "Innovator Company": "Leo Pharma"}, {"S#": 67, "Reg. No.": 26639, "Dosage form": "ORALS", "Products Name": "Fudic Tablets", "Pack Size": "10's", "Composition": "Each film coated tablet contains:- Sodium Fusidate, .250 mg (BP Specifications)", "Category": "Antibiotics / Dermatology", "Indications": "Skin and soft tissue infections (Staphylococcal)", "Brand Leader": "Fucidin", "Innovator Company": "Leo Pharma"}, {"S#": 68, "Reg. No.": 131719, "Dosage form": "ORALS", "Products Name": "Fluziwell 50mg/5ml Dry Suspension", "Pack Size": "35ml", "Composition": "Each 5ml of reconstituted suspension contains: Fluconazole .............. 50mg (USP Specifications)", "Category": "Antifungals", "Indications": "Candidiasis, cryptococcal meningitis, tinea infections", "Brand Leader": "Diflucan", "Innovator Company": "Pfizer"}, {"S#": 69, "Reg. No.": 49152, "Dosage form": "ORALS", "Products Name": "Gezlin Tablets", "Pack Size": "7's", "Composition": "Each tablet contains:- Gemifloxcin (as Mesylate), 320mg. (Shaigan's Specifications)", "Category": "Antibiotics / Respiratory", "Indications": "Community-acquired pneumonia, acute bacterial bronchitis", "Brand Leader": "Factive", "Innovator Company": "LG Life Sciences / Oscient"}, {"S#": 70, "Reg. No.": 57275, "Dosage form": "ORALS", "Products Name": "Gluzon Tablets", "Pack Size": "14's", "Composition": "Each tablet contains:-  Pioglitazone (as Hcl)15mg. (USP Specifications)", "Category": "Endocrinology / Diabetology", "Indications": "Type 2 diabetes mellitus", "Brand Leader": "Actos", "Innovator Company": "Takeda"}, {"S#": 71, "Reg. No.": 57276, "Dosage form": "ORALS", "Products Name": "Gluzon Tablets", "Pack Size": "14's", "Composition": "Each tablet contains:-  Pioglitazone (as Hcl)30mg. (USP Specifications)", "Category": "Endocrinology / Diabetology", "Indications": "Type 2 diabetes mellitus", "Brand Leader": "Actos", "Innovator Company": "Takeda"}, {"S#": 72, "Reg. No.": 57277, "Dosage form": "ORALS", "Products Name": "Gluzon Plus Tablets", "Pack Size": "14's", "Composition": "Each film coated tablet contains:-  Pioglitazone HCI (USP) equivalent to Pioglitazone, .15mg Metformin HCI (USP), 500mg. (USP Specifications)", "Category": "Endocrinology / Diabetology", "Indications": "Type 2 diabetes mellitus (combination)", "Brand Leader": "Actoplus Met", "Innovator Company": "Takeda"}, {"S#": 73, "Reg. No.": 103368, "Dosage form": "ORALS", "Products Name": "Gravido 75mg Capsule", "Pack Size": "10's", "Composition": "Each capsule contains:- Oseltamivir as phosophate, 75mg (USP Specifications)", "Category": "Antivirals", "Indications": "Influenza A and B prevention and treatment", "Brand Leader": "Tamiflu", "Innovator Company": "Roche"}, {"S#": 74, "Reg. No.": 52790, "Dosage form": "ORALS", "Products Name": "Hibon 0.5 Capsules", "Pack Size": "10's", "Composition": "Each capsule contains:- Alfacalcidol, 0.5mcg (Shaigan's Specifications)", "Category": "Bone & Metabolic / Nephrology", "Indications": "Renal osteodystrophy, hypoparathyroidism, rickets", "Brand Leader": "One-Alpha", "Innovator Company": "Leo Pharma"}, {"S#": 75, "Reg. No.": 52792, "Dosage form": "ORALS", "Products Name": "Hibon 0.25 Capsules", "Pack Size": "10's", "Composition": "Each capsule contains:- Alfacalcidol, 0.25mcg (Shaigan's Specifications)", "Category": "Bone & Metabolic / Nephrology", "Indications": "Renal osteodystrophy, hypoparathyroidism, rickets", "Brand Leader": "One-Alpha", "Innovator Company": "Leo Pharma"}, {"S#": 76, "Reg. No.": 52791, "Dosage form": "ORALS", "Products Name": "Hibon Oral Drops", "Pack Size": "20ml with polyethylene dropping device", "Composition": "Each ml contains:- Alfacalcidol, 2mcg (Shaigan's Specifications)", "Category": "Bone & Metabolic / Nephrology", "Indications": "Renal osteodystrophy, hypoparathyroidism (pediatric)", "Brand Leader": "One-Alpha", "Innovator Company": "Leo Pharma"}, {"S#": 77, "Reg. No.": 84304, "Dosage form": "ORALS", "Products Name": "Hyvex 200mg Tablets", "Pack Size": "30's", "Composition": "Each film coated tablet contains:  Hydroxychloroquine Sulfate, , .200mg  (USP Specification)", "Category": "Rheumatology / Immunology", "Indications": "Rheumatoid arthritis, SLE, malaria", "Brand Leader": "Plaquenil", "Innovator Company": "Sanofi"}, {"S#": 78, "Reg. No.": 19302, "Dosage form": "ORALS", "Products Name": "Hypolip Tablets", "Pack Size": "10's", "Composition": "Each tablet contians:- Lovastatin, , .20mg (USP Specifications)", "Category": "Cardiology / Lipidology", "Indications": "Hypercholesterolemia, prevention of cardiovascular events", "Brand Leader": "Mevacor", "Innovator Company": "Merck"}, {"S#": 79, "Reg. No.": 101540, "Dosage form": "ORALS", "Products Name": "Ifax 200mg Tablet", "Pack Size": "10's", "Composition": "Each film coated tablet contains:  Rifaximin, , ..200mg  (BP Specifications)", "Category": "Gastroenterology", "Indications": "Traveler's diarrhea, hepatic encephalopathy, IBS-D", "Brand Leader": "Xifaxan", "Innovator Company": "Salix / Alfasigma"}, {"S#": 80, "Reg. No.": 110809, "Dosage form": "ORALS", "Products Name": "Ifax 550mg Tablet", "Pack Size": "10's", "Composition": "Each film coated tablet contains:  Rifaximin, , 550mg  (BP Specifications)", "Category": "Gastroenterology", "Indications": "Hepatic encephalopathy, IBS-D", "Brand Leader": "Xifaxan", "Innovator Company": "Salix / Alfasigma"}, {"S#": 81, "Reg. No.": 41636, "Dosage form": "ORALS", "Products Name": "Iroton Oral Drops", "Pack Size": "15ml", "Composition": "Each ml contains:- Iron (III) Hydroxide Polymaltose Complex eq.to elemental to Iron (III), 50mg", "Category": "Hematology", "Indications": "Iron deficiency anemia", "Brand Leader": "Maltofer", "Innovator Company": "Vifor Pharma"}, {"S#": 82, "Reg. No.": 101746, "Dosage form": "ORALS", "Products Name": "Iodino 130mg Tablets", "Pack Size": "20's", "Composition": "Each tablet contains:- Potassium Iodide, 130mg (USP Specifications)", "Category": "Thyroid / Emergency Medicine", "Indications": "Radiation emergency, thyroid protection, iodine deficiency", "Brand Leader": "ThyroShield", "Innovator Company": "Fleming & Company"}, {"S#": 83, "Reg. No.": 82459, "Dosage form": "ORALS", "Products Name": "Isopreg Tablet", "Pack Size": "2x10's", "Composition": "Each tablet contains: Dydrogesterone, , 10mg (USP Specification)", "Category": "Gynecology / Obstetrics", "Indications": "Threatened abortion, endometriosis, progesterone deficiency", "Brand Leader": "Duphaston", "Innovator Company": "Abbott / Solvay"}, {"S#": 84, "Reg. No.": 90012, "Dosage form": "ORALS", "Products Name": "Ivadin-5 Tablets", "Pack Size": "14's", "Composition": "Each film coated tablet contains: Ivabradine as hydrochloride, 5mg (As per *Innovator's Specifications)", "Category": "Cardiology", "Indications": "Chronic heart failure, stable angina", "Brand Leader": "Coralan / Procoralan", "Innovator Company": "Servier"}, {"S#": 85, "Reg. No.": 90013, "Dosage form": "ORALS", "Products Name": "Ivadin-7.5 Tablets", "Pack Size": "14's", "Composition": "Each film coated tablet contains: Ivabradine as hydrochloride, 7.5mg (As per *Innovator's Specifications)", "Category": "Cardiology", "Indications": "Chronic heart failure, stable angina", "Brand Leader": "Coralan / Procoralan", "Innovator Company": "Servier"}, {"S#": 86, "Reg. No.": 24060, "Dosage form": "ORALS", "Products Name": "Laclose Syrup", "Pack Size": "120ml", "Composition": "Each 5ml contains:- Lactulose 3.35gm", "Category": "Gastroenterology", "Indications": "Constipation, hepatic encephalopathy", "Brand Leader": "Duphalac", "Innovator Company": "Solvay / Abbott"}, {"S#": 87, "Reg. No.": 132029, "Dosage form": "ORALS", "Products Name": "Lacora 50mg Tablet", "Pack Size": "1x10's 2x10's 3x10's", "Composition": "Each film coated tablet contains:- Lacosamide, ..50mg  (BP Specifications)", "Category": "Neurology", "Indications": "Partial-onset seizures, epilepsy", "Brand Leader": "Vimpat", "Innovator Company": "UCB Pharma"}, {"S#": 88, "Reg. No.": 132030, "Dosage form": "ORALS", "Products Name": "Lacora 100mg Tablet", "Pack Size": "1x10's 2x10's 3x10's", "Composition": "Each film coated tablet contains:- Lacosamide, 100mg  (BP Specifications)", "Category": "Neurology", "Indications": "Partial-onset seizures, epilepsy", "Brand Leader": "Vimpat", "Innovator Company": "UCB Pharma"}, {"S#": 89, "Reg. No.": 102334, "Dosage form": "ORALS", "Products Name": "Landex 30mg Capsules", "Pack Size": "30's", "Composition": "Each Capsule Contains:- Dexlansoprazole duel delayed release pellets eq. to Daxlansoprazole, .30mg  (As per *Innovator Specificaitons)", "Category": "Gastroenterology", "Indications": "GERD, erosive esophagitis", "Brand Leader": "Dexilant / Kapidex", "Innovator Company": "Takeda"}, {"S#": 90, "Reg. No.": 102335, "Dosage form": "ORALS", "Products Name": "Landex 60mg Capsules", "Pack Size": "30's", "Composition": "Each Capsule Contains:- Dexlansoprazole duel delayed release pellets eq. to Daxlansoprazole, .60mg  (As per *Innovator Specificaitons)", "Category": "Gastroenterology", "Indications": "GERD, erosive esophagitis", "Brand Leader": "Dexilant / Kapidex", "Innovator Company": "Takeda"}, {"S#": 91, "Reg. No.": 132066, "Dosage form": "ORALS", "Products Name": "Lintab 5mg Tablet", "Pack Size": "2x10's", "Composition": "Each film coated tablet contains: Linagliptin .............................. 5mg (As per Innovator's Specifications)", "Category": "Endocrinology / Diabetology", "Indications": "Type 2 diabetes mellitus", "Brand Leader": "Trajenta", "Innovator Company": "Boehringer Ingelheim / Eli Lilly"}, {"S#": 92, "Reg. No.": 132797, "Dosage form": "ORALS", "Products Name": "Lintab-M 2.5/500mg Tablet", "Pack Size": "2x7's", "Composition": "Each film coated tablet contains: Linagliptin .............................. 2.5mg Metformin HCl .............................. 500mg (As per Innovator's Specifications)", "Category": "Endocrinology / Diabetology", "Indications": "Type 2 diabetes mellitus", "Brand Leader": "Jentadueto", "Innovator Company": "Boehringer Ingelheim / Eli Lilly"}, {"S#": 93, "Reg. No.": 132201, "Dosage form": "ORALS", "Products Name": "Lintab-M 2.5/850mg Tablet", "Pack Size": "2x7's", "Composition": "Each film coated tablet contains: Linagliptin .............................. 2.5mg Metformin HCl .............................. 850mg (As per Innovator's Specifications)", "Category": "Endocrinology / Diabetology", "Indications": "Type 2 diabetes mellitus", "Brand Leader": "Jentadueto", "Innovator Company": "Boehringer Ingelheim / Eli Lilly"}, {"S#": 94, "Reg. No.": 133865, "Dosage form": "ORALS", "Products Name": "Lintab-M 2.5/1000mg Tablet", "Pack Size": "2x7's", "Composition": "Each film coated tablet contains: Linagliptin ......................... 2.5mg Metformin HCl ..................... 1000mg (As per Innovator's Specifications)", "Category": "Endocrinology / Diabetology", "Indications": "Type 2 diabetes mellitus", "Brand Leader": "Jentadueto", "Innovator Company": "Boehringer Ingelheim / Eli Lilly"}, {"S#": 95, "Reg. No.": 133868, "Dosage form": "ORALS", "Products Name": "Lintab-E 25/5mg Tablets", "Pack Size": "2x7's", "Composition": "Each film coated tablet contains: Empagliflozin ....................... 25mg Linagliptin ............................ 5mg (As per Innovator's Specifications)", "Category": "Endocrinology / Diabetology", "Indications": "Type 2 diabetes mellitus", "Brand Leader": "Glyxambi", "Innovator Company": "Boehringer Ingelheim / Eli Lilly"}, {"S#": 96, "Reg. No.": 89681, "Dosage form": "ORALS", "Products Name": "Mcnol 20mg Tablets", "Pack Size": "1x30's", "Composition": "Each film coated tablet contains: Trimetazidine as dihydrochloride, .20mg (JP Specifications)", "Category": "Cardiology", "Indications": "Stable angina, tinnitus, vertigo", "Brand Leader": "Vastarel", "Innovator Company": "Servier"}, {"S#": 97, "Reg. No.": 89680, "Dosage form": "ORALS", "Products Name": "Mcnol MR 35mg Tablets", "Pack Size": "20's", "Composition": "Each film coated modified release tablet contains: Trimetazidine as dihydrochloride, .35mg (As per *Innovator's Specifications)", "Category": "Cardiology", "Indications": "Stable angina", "Brand Leader": "Vastarel MR", "Innovator Company": "Servier"}, {"S#": 98, "Reg. No.": 18667, "Dosage form": "ORALS", "Products Name": "Melofen Tablets", "Pack Size": "30's", "Composition": "Each tablet contain:- Mefloquine Hcl, ..274.0mg Sulfadoxine, , .500.0mg  Pyromethamine, , 25.0mg", "Category": "Tropical Medicine", "Indications": "Malaria (Plasmodium falciparum and vivax)", "Brand Leader": "Fansidar / Lariam", "Innovator Company": "Roche / GSK"}, {"S#": 99, "Reg. No.": 24059, "Dosage form": "ORALS", "Products Name": "Metni Tablets", "Pack Size": "1x10's", "Composition": "Each tablet contains:- Metronidazole, .500mg", "Category": "Antibiotics / Gastroenterology", "Indications": "Anaerobic infections, H. pylori, protozoal infections", "Brand Leader": "Flagyl", "Innovator Company": "Pfizer / Sanofi"}, {"S#": 100, "Reg. No.": 102601, "Dosage form": "ORALS", "Products Name": "Microvir 250mg Tablets", "Pack Size": "6's", "Composition": "Each film coated tablet contains:- Famciclovir, .250mg (USP Specifications)", "Category": "Antivirals", "Indications": "Herpes zoster, herpes simplex, recurrent genital herpes", "Brand Leader": "Famvir", "Innovator Company": "Novartis"}, {"S#": 101, "Reg. No.": 49130, "Dosage form": "ORALS", "Products Name": "Mionex Tablets 400mg", "Pack Size": "5's", "Composition": "Each film coated tablet contains:-  Moxifloxacin (as Hcl), 400mg.  (USP Specifications)", "Category": "Antibiotics / Respiratory", "Indications": "Community-acquired pneumonia, acute sinusitis, ABECB", "Brand Leader": "Avelox", "Innovator Company": "Bayer"}, {"S#": 102, "Reg. No.": 89683, "Dosage form": "ORALS", "Products Name": "Mymex Tablets 5mg", "Pack Size": "10's", "Composition": "Each film coated tablet contains: Cyclobenzaprine hydrochloride, .5mg (USP Specification)", "Category": "Neurology / Muscle Relaxants", "Indications": "Muscle spasm, musculoskeletal pain", "Brand Leader": "Flexeril", "Innovator Company": "McNeil / Janssen"}, {"S#": 103, "Reg. No.": 84302, "Dosage form": "ORALS", "Products Name": "Mymex 10 Tablets", "Pack Size": "10's", "Composition": "Each tablet contains:-   Cyclobenzaprine HCl, .10mg (USP Specification)", "Category": "Neurology / Muscle Relaxants", "Indications": "Muscle spasm, musculoskeletal pain", "Brand Leader": "Flexeril", "Innovator Company": "McNeil / Janssen"}, {"S#": 104, "Reg. No.": 97377, "Dosage form": "ORALS", "Products Name": "Natiglin 60mg Tablets", "Pack Size": "6x4's", "Composition": "Each film coated tablet contains:-   Nateglinide, , , .60mg (USP Specifications)", "Category": "Endocrinology / Diabetology", "Indications": "Type 2 diabetes mellitus (postprandial glucose control)", "Brand Leader": "Starlix", "Innovator Company": "Novartis"}, {"S#": 105, "Reg. No.": 97378, "Dosage form": "ORALS", "Products Name": "Natiglin 120mg Tablets", "Pack Size": "6x4's", "Composition": "Each film coated tablet contains:-   Nateglinide, , , .120mg (USP Specifications)", "Category": "Endocrinology / Diabetology", "Indications": "Type 2 diabetes mellitus (postprandial glucose control)", "Brand Leader": "Starlix", "Innovator Company": "Novartis"}, {"S#": 106, "Reg. No.": 119088, "Dosage form": "ORALS", "Products Name": "N-Glycrin SR 2.6mg Tablets", "Pack Size": "30's", "Composition": "Each sustained release tablet contains:-  Glyceryl Trinitrate 2.6mg (as Diluted Nitroglycerin USP) (As per *Innovator's Specifications)", "Category": "Cardiology", "Indications": "Angina prophylaxis", "Brand Leader": "Nitro-Dur / Transderm-Nitro", "Innovator Company": "Schering-Plough / Novartis"}, {"S#": 107, "Reg. No.": 30063, "Dosage form": "ORALS", "Products Name": "NS - 250 mg Tablets", "Pack Size": "3x10's", "Composition": "Each tablet contains:- Naproxen, , 250mg", "Category": "Analgesics / Rheumatology", "Indications": "Pain, inflammation, dysmenorrhea, arthritis", "Brand Leader": "Naprosyn / Aleve", "Innovator Company": "Roche / Bayer"}, {"S#": 108, "Reg. No.": 105813, "Dosage form": "ORALS", "Products Name": "Opsgen 500mg Capsule", "Pack Size": "10's", "Composition": "Each capsule contains:- Dobesilate as Monohydrate, , 500mg (As per *Innovator's Specification)", "Category": "Ophthalmology / Vascular", "Indications": "Diabetic retinopathy, chronic venous insufficiency", "Brand Leader": "Doxium", "Innovator Company": "OM Pharma"}, {"S#": 109, "Reg. No.": 132581, "Dosage form": "ORALS", "Products Name": "Pentadol 75mg Tablet", "Pack Size": "10's", "Composition": "Each film coated tablet contains: Tapentadol as HCl, ....75mg (As per innovator's Specifications)", "Category": "Analgesics", "Indications": "Moderate to severe acute and chronic pain", "Brand Leader": "Nucynta", "Innovator Company": "Janssen"}, {"S#": 110, "Reg. No.": 123489, "Dosage form": "ORALS", "Products Name": "Remid 100 Tablets", "Pack Size": "100's", "Composition": "Each film coated tablet contains:- Rebamipide, , .100mg (JP Specifications)", "Category": "Gastroenterology", "Indications": "Gastric ulcer, gastritis, NSAID-induced mucosal injury", "Brand Leader": "Mucosta", "Innovator Company": "Otsuka"}, {"S#": 111, "Reg. No.": 38309, "Dosage form": "ORALS", "Products Name": "Risonate-5 Tablets", "Pack Size": "10's", "Composition": "Each film coated tablet contains:- Risedronate Sodium, , .5mg (USP Specifications)", "Category": "Bone & Metabolic", "Indications": "Osteoporosis, Paget's disease", "Brand Leader": "Actonel", "Innovator Company": "Procter & Gamble / Sanofi"}, {"S#": 112, "Reg. No.": 38361, "Dosage form": "ORALS", "Products Name": "Riba Capsules", "Pack Size": "10's", "Composition": "Each capsule contains:- Ribavirin, .400mg (USP Specifications)", "Category": "Hepatology / Antivirals", "Indications": "Chronic Hepatitis C (HCV)", "Brand Leader": "Copegus / Rebetol", "Innovator Company": "Roche / Schering-Plough"}, {"S#": 113, "Reg. No.": 38362, "Dosage form": "ORALS", "Products Name": "Riba-600 Capsules", "Pack Size": "10's", "Composition": "Each capsule contains:- Ribavirin, .600mg (USP Specifications)", "Category": "Hepatology / Antivirals", "Indications": "Chronic Hepatitis C (HCV)", "Brand Leader": "Copegus / Rebetol", "Innovator Company": "Roche / Schering-Plough"}, {"S#": 114, "Reg. No.": 57267, "Dosage form": "ORALS", "Products Name": "Remet-5 Tablets", "Pack Size": "14x2's", "Composition": "Each tablet contains:- Ramipril, 5mg (B.P Specs)", "Category": "Cardiology", "Indications": "Hypertension, heart failure, post-MI, nephroprotection", "Brand Leader": "Altace / Tritace", "Innovator Company": "King Pharmaceuticals / Sanofi"}, {"S#": 115, "Reg. No.": 57268, "Dosage form": "ORALS", "Products Name": "Remet-2.5 Tablets", "Pack Size": "14x2's", "Composition": "Each tablet contains:- Ramipril, 2.5mg (B.P Specs)", "Category": "Cardiology", "Indications": "Hypertension, heart failure, post-MI, nephroprotection", "Brand Leader": "Altace / Tritace", "Innovator Company": "King Pharmaceuticals / Sanofi"}, {"S#": 116, "Reg. No.": 57269, "Dosage form": "ORALS", "Products Name": "Remet-1.25 Tablets", "Pack Size": "14x2's", "Composition": "Each tablet contains:- Ramipril, 1.25mg (B.P Specs)", "Category": "Cardiology", "Indications": "Hypertension, heart failure, post-MI, nephroprotection", "Brand Leader": "Altace / Tritace", "Innovator Company": "King Pharmaceuticals / Sanofi"}, {"S#": 117, "Reg. No.": 129739, "Dosage form": "ORALS", "Products Name": "Romycin 250mg Tablet", "Pack Size": "1x10's", "Composition": "Each film coated tablet contains:- Clarithromycin, , 250mg USP Specifications)", "Category": "Antibiotics", "Indications": "Respiratory, skin, H. pylori eradication, MAC prophylaxis", "Brand Leader": "Biaxin / Klaricid", "Innovator Company": "Abbott"}, {"S#": 118, "Reg. No.": 129740, "Dosage form": "ORALS", "Products Name": "Romycin 500mg Tablet", "Pack Size": "1x10's", "Composition": "Each film coated tablet contains:- Clarithromycin, , 500mg USP Specifications)", "Category": "Antibiotics", "Indications": "Respiratory, skin, H. pylori eradication, MAC prophylaxis", "Brand Leader": "Biaxin / Klaricid", "Innovator Company": "Abbott"}, {"S#": 119, "Reg. No.": 132095, "Dosage form": "ORALS", "Products Name": "Romycin 125mg/5ml Suspension", "Pack Size": "60ml", "Composition": "Each 5ml contains:- Clarithromycin as taste masked granules, .125mg (USP Specifications)", "Category": "Antibiotics", "Indications": "Respiratory, skin, ENT infections in children", "Brand Leader": "Biaxin / Klaricid", "Innovator Company": "Abbott"}, {"S#": 120, "Reg. No.": 132096, "Dosage form": "ORALS", "Products Name": "Romycin 250mg/5ml Suspension", "Pack Size": "60ml", "Composition": "Each 5ml contains:- Clarithromycin as taste masked granules, .250mg (USP Specifications)", "Category": "Antibiotics", "Indications": "Respiratory, skin, ENT infections in children", "Brand Leader": "Biaxin / Klaricid", "Innovator Company": "Abbott"}, {"S#": 121, "Reg. No.": 106253, "Dosage form": "ORALS", "Products Name": "Ruvar Tablet 200/50 mg", "Pack Size": "120's", "Composition": "Each film coated tablet contains: Lopinavir, .200mg  Ritonavir, 50mg (USP Specifications)", "Category": "Infectious Disease / HIV", "Indications": "HIV infection (antiretroviral therapy)", "Brand Leader": "Kaletra / Aluvia", "Innovator Company": "Abbott / AbbVie"}, {"S#": 122, "Reg. No.": 82460, "Dosage form": "ORALS", "Products Name": "Rapaza Tablet", "Pack Size": "21's", "Composition": "Each film coated tablet contains:  Ethinylestradiol, .0.02mg Gestodene, , 0.075 (As per Innovator's Specifications)", "Category": "Gynecology / Contraception", "Indications": "Oral contraception", "Brand Leader": "Femodene / Gynera", "Innovator Company": "Bayer"}, {"S#": 123, "Reg. No.": 109351, "Dosage form": "ORALS", "Products Name": "Salvartan24/26mg Tablet", "Pack Size": "14's 30's", "Composition": "Each film coated tablet contains:- Sacubitril, , 24mg Valsartan, 26mg (As per Innovator's Specifications)", "Category": "Cardiology", "Indications": "Heart failure with reduced ejection fraction (HFrEF)", "Brand Leader": "Entresto", "Innovator Company": "Novartis"}, {"S#": 124, "Reg. No.": 109352, "Dosage form": "ORALS", "Products Name": "Salvartan49/51mg Tablet", "Pack Size": "14's 30's", "Composition": "Each film coated tablet contains:- Sacubitril, , 49mg Valsartan, 51mg (As per Innovator's Specifications)", "Category": "Cardiology", "Indications": "Heart failure with reduced ejection fraction (HFrEF)", "Brand Leader": "Entresto", "Innovator Company": "Novartis"}, {"S#": 125, "Reg. No.": 109353, "Dosage form": "ORALS", "Products Name": "Salvartan97/103mg Tablet", "Pack Size": "14's 30's", "Composition": "Each film coated tablet contains:- Sacubitril, , 97mg Valsartan, 103mg (As per Innovator's Specifications)", "Category": "Cardiology", "Indications": "Heart failure with reduced ejection fraction (HFrEF)", "Brand Leader": "Entresto", "Innovator Company": "Novartis"}, {"S#": 126, "Reg. No.": 132034, "Dosage form": "ORALS", "Products Name": "Saren 80mg Tablet", "Pack Size": "1x10's 2x10's 3x10's", "Composition": "Each film coated tablet contains: Valsartan, ......80mg (USP Specifications)", "Category": "Cardiology", "Indications": "Hypertension, heart failure, post-MI", "Brand Leader": "Diovan", "Innovator Company": "Novartis"}, {"S#": 127, "Reg. No.": 132035, "Dosage form": "ORALS", "Products Name": "Saren 160mg Tablet", "Pack Size": "1x10's 2x10's 3x10's", "Composition": "Each film coated tablet contains: Valsartan, ......160mg (USP Specifications)", "Category": "Cardiology", "Indications": "Hypertension, heart failure, post-MI", "Brand Leader": "Diovan", "Innovator Company": "Novartis"}, {"S#": 128, "Reg. No.": 103530, "Dosage form": "ORALS", "Products Name": "Schiwind 8mg Tablets", "Pack Size": "30's", "Composition": "Each tablets contains :- Betahistine dihydrochloride, .8mg (BP Specificaitons)", "Category": "ENT / Neurology", "Indications": "Vertigo, Meniere's disease, tinnitus", "Brand Leader": "Serc / Betaserc", "Innovator Company": "Abbott / Solvay"}, {"S#": 129, "Reg. No.": 103531, "Dosage form": "ORALS", "Products Name": "Schiwind 16mg Tablets", "Pack Size": "30's", "Composition": "Each tablets contains :- Betahistine dihydrochloride, .16mg (BP Specificaitons)", "Category": "ENT / Neurology", "Indications": "Vertigo, Meniere's disease, tinnitus", "Brand Leader": "Serc / Betaserc", "Innovator Company": "Abbott / Solvay"}, {"S#": 130, "Reg. No.": 103532, "Dosage form": "ORALS", "Products Name": "Schiwind 24mg Tablets", "Pack Size": "30's", "Composition": "Each tablets contains :- Betahistine dihydrochloride, .24mg (BP Specificaitons)", "Category": "ENT / Neurology", "Indications": "Vertigo, Meniere's disease, tinnitus", "Brand Leader": "Serc / Betaserc", "Innovator Company": "Abbott / Solvay"}, {"S#": 131, "Reg. No.": 49084, "Dosage form": "ORALS", "Products Name": "Seirex Capsules 400mg", "Pack Size": "1x10's", "Composition": "Each capsule contains:-  Gabapentin, 400mg.  (USP Specifications)", "Category": "Neurology", "Indications": "Epilepsy, neuropathic pain, postherpetic neuralgia", "Brand Leader": "Neurontin", "Innovator Company": "Pfizer"}, {"S#": 132, "Reg. No.": 49085, "Dosage form": "ORALS", "Products Name": "Seirex Capsules 300mg", "Pack Size": "1x10's", "Composition": "Each capsule contains:-  Gabapentin, 300mg.  (USP Specifications)", "Category": "Neurology", "Indications": "Epilepsy, neuropathic pain, postherpetic neuralgia", "Brand Leader": "Neurontin", "Innovator Company": "Pfizer"}, {"S#": 133, "Reg. No.": 49086, "Dosage form": "ORALS", "Products Name": "Seirex Capsules 100mg", "Pack Size": "1x10's", "Composition": "Each capsule contains:-  Gabapentin, 100mg.  (USP Specifications)", "Category": "Neurology", "Indications": "Epilepsy, neuropathic pain, postherpetic neuralgia", "Brand Leader": "Neurontin", "Innovator Company": "Pfizer"}, {"S#": 134, "Reg. No.": 103369, "Dosage form": "ORALS", "Products Name": "Shai-C 500mg Tablet", "Pack Size": "40's", "Composition": "Each chewable tablet contains:- Ascorbic Acid, 500mg (USP Specification)", "Category": "Vitamins & Supplements", "Indications": "Vitamin C deficiency, scurvy, immune support", "Brand Leader": "Celin / Redoxon", "Innovator Company": "Abbott / Bayer"}, {"S#": 135, "Reg. No.": 92109, "Dosage form": "ORALS", "Products Name": "Stemax Tablet", "Pack Size": "28's", "Composition": "Each tablet contains:- Drospirenone, , .3mg Ethinylestradiol, , .0.02mg (USP Specifications)", "Category": "Gynecology / Contraception", "Indications": "Oral contraception, PMDD, acne", "Brand Leader": "Yasmin", "Innovator Company": "Bayer"}, {"S#": 136, "Reg. No.": 83592, "Dosage form": "ORALS", "Products Name": "Sygate 0.625 Tablets", "Pack Size": "2x10's", "Composition": "Each tablet contains:- Conjugated Oestrogens, 0.625mg (USP Specification)", "Category": "Gynecology / HRT", "Indications": "Menopausal symptoms, osteoporosis prevention", "Brand Leader": "Premarin", "Innovator Company": "Pfizer / Wyeth"}, {"S#": 137, "Reg. No.": 83597, "Dosage form": "ORALS", "Products Name": "Sygate  Tablets", "Pack Size": "30's", "Composition": "Each tablet contains:- Conjugated Oestrogens, 0.3mg (USP Specification)", "Category": "Gynecology / HRT", "Indications": "Menopausal symptoms, osteoporosis prevention", "Brand Leader": "Premarin", "Innovator Company": "Pfizer / Wyeth"}, {"S#": 138, "Reg. No.": 83600, "Dosage form": "ORALS", "Products Name": "Sygate Tablet", "Pack Size": "10x2's", "Composition": "Each tablet contains:-Conjugated Oestrogens, 1.25mg (USP Specification)", "Category": "Gynecology / HRT", "Indications": "Menopausal symptoms, osteoporosis prevention", "Brand Leader": "Premarin", "Innovator Company": "Pfizer / Wyeth"}, {"S#": 139, "Reg. No.": 132798, "Dosage form": "ORALS", "Products Name": "Tadira 5mg Tablet", "Pack Size": "7x4's", "Composition": "Each film coated tablet contains: Tadalafil, ......5mg (USP Specification)", "Category": "Urology / Cardiology", "Indications": "Erectile dysfunction, BPH, pulmonary arterial hypertension", "Brand Leader": "Cialis", "Innovator Company": "Eli Lilly"}, {"S#": 140, "Reg. No.": 132799, "Dosage form": "ORALS", "Products Name": "Tadira 10mg Tablet", "Pack Size": "7x4's", "Composition": "Each film coated tablet contains: Tadalafil, ......10mg (USP Specification)", "Category": "Urology / Cardiology", "Indications": "Erectile dysfunction, BPH", "Brand Leader": "Cialis", "Innovator Company": "Eli Lilly"}, {"S#": 141, "Reg. No.": 132800, "Dosage form": "ORALS", "Products Name": "Tadira 20mg Tablet", "Pack Size": "7x4's", "Composition": "Each film coated tablet contains: Tadalafil, .....20mg (USP Specification)", "Category": "Urology / Cardiology", "Indications": "Erectile dysfunction, pulmonary arterial hypertension", "Brand Leader": "Cialis / Adcirca", "Innovator Company": "Eli Lilly"}, {"S#": 142, "Reg. No.": 91747, "Dosage form": "ORALS", "Products Name": "Takeze 4mg Tablets", "Pack Size": "20's", "Composition": "Each tablet contains:- Thiocolchicoside, 4mg  (As per *Innovator's Specifications)\"", "Category": "Neurology / Muscle Relaxants", "Indications": "Muscle spasm, contractures, musculoskeletal pain", "Brand Leader": "Muscoril / Coltramyl", "Innovator Company": "Sanofi"}, {"S#": 143, "Reg. No.": 49187, "Dosage form": "ORALS", "Products Name": "Tenocin Tablets", "Pack Size": "1 x 10's", "Composition": "Each tablet contains:- Minocycline as Hcl, 100mg (USP Specs)", "Category": "Antibiotics / Dermatology", "Indications": "Acne, respiratory infections, chlamydia, Lyme disease", "Brand Leader": "Minocin", "Innovator Company": "Lederle / Wyeth"}, {"S#": 144, "Reg. No.": 84306, "Dosage form": "ORALS", "Products Name": "Tensin-16 Tablets", "Pack Size": "28's", "Composition": "Each Tablet Contains: Candesartan Cilexetil.16mg (JP Specification)", "Category": "Cardiology", "Indications": "Hypertension, heart failure", "Brand Leader": "Atacand", "Innovator Company": "AstraZeneca / Takeda"}, {"S#": 145, "Reg. No.": 132031, "Dosage form": "ORALS", "Products Name": "Tesacor 20mg Tablet", "Pack Size": "1x10's 2x10's 3x10's", "Composition": "Each film coated tablet contains:- Telmisartan, 20mg (USP Specifications)", "Category": "Cardiology", "Indications": "Hypertension, cardiovascular risk reduction", "Brand Leader": "Micardis", "Innovator Company": "Boehringer Ingelheim"}, {"S#": 146, "Reg. No.": 132032, "Dosage form": "ORALS", "Products Name": "Tesacor 40mg Tablet", "Pack Size": "1x10's 2x10's 3x10's", "Composition": "Each film coated tablet contains:- Telmisartan, 40mg (USP Specifications)", "Category": "Cardiology", "Indications": "Hypertension, cardiovascular risk reduction", "Brand Leader": "Micardis", "Innovator Company": "Boehringer Ingelheim"}, {"S#": 147, "Reg. No.": 132033, "Dosage form": "ORALS", "Products Name": "Tesacor 80mg Tablet", "Pack Size": "1x10's 2x10's 3x10's", "Composition": "Each film coated tablet contains:- Telmisartan, 80mg (USP Specifications)", "Category": "Cardiology", "Indications": "Hypertension, cardiovascular risk reduction", "Brand Leader": "Micardis", "Innovator Company": "Boehringer Ingelheim"}, {"S#": 148, "Reg. No.": 63199, "Dosage form": "ORALS", "Products Name": "Ticavir 0.5mg Tablets", "Pack Size": "3x10's", "Composition": "Each film coated tablet contains:- Entecavir Monohydrate, 0.5mg (USP Specs.)", "Category": "Hepatology / Antivirals", "Indications": "Chronic Hepatitis B (HBV)", "Brand Leader": "Baraclude", "Innovator Company": "Bristol-Myers Squibb"}, {"S#": 149, "Reg. No.": 72007, "Dosage form": "ORALS", "Products Name": "Ticavir 1mg Tablets", "Pack Size": "30's", "Composition": "Each film coated tablet contains:- Entecavir as Monohydrate, 1mg (USP Specs.)", "Category": "Hepatology / Antivirals", "Indications": "Chronic Hepatitis B (HBV)", "Brand Leader": "Baraclude", "Innovator Company": "Bristol-Myers Squibb"}, {"S#": 150, "Reg. No.": 99845, "Dosage form": "ORALS", "Products Name": "Tikanox-60 Tablets", "Pack Size": "10's", "Composition": "Each film coated Tablets contains :- Ticagrelor, , 60mg (BP Specifications)", "Category": "Cardiology / Hematology", "Indications": "ACS, prevention of atherothrombotic events", "Brand Leader": "Brilinta / Brilique", "Innovator Company": "AstraZeneca"}, {"S#": 151, "Reg. No.": 99846, "Dosage form": "ORALS", "Products Name": "Tikanox-90 Tablets", "Pack Size": "10's", "Composition": "Each film coated Tablets contains :- Ticagrelor, , 90mg (BP Specifications)", "Category": "Cardiology / Hematology", "Indications": "ACS, prevention of atherothrombotic events", "Brand Leader": "Brilinta / Brilique", "Innovator Company": "AstraZeneca"}, {"S#": 152, "Reg. No.": 108457, "Dosage form": "ORALS", "Products Name": "Tonriv 10mg/10mg Tablet", "Pack Size": "10's", "Composition": "Each uncoated tablet contains:- Ezetimibe, 10mg Simvastatin, .10mg (As per Innovator Specifications)", "Category": "Cardiology / Lipidology", "Indications": "Hypercholesterolemia, mixed dyslipidemia", "Brand Leader": "Vytorin / Inegy", "Innovator Company": "Merck / Schering-Plough"}, {"S#": 153, "Reg. No.": 108458, "Dosage form": "ORALS", "Products Name": "Tonriv 10mg/20mg Tablet", "Pack Size": "10's", "Composition": "Each uncoated tablet contains:- Ezetimibe, 10mg Simvastatin, .20mg (As per Innovator Specifications)", "Category": "Cardiology / Lipidology", "Indications": "Hypercholesterolemia, mixed dyslipidemia", "Brand Leader": "Vytorin / Inegy", "Innovator Company": "Merck / Schering-Plough"}, {"S#": 154, "Reg. No.": 108459, "Dosage form": "ORALS", "Products Name": "Tonriv 10mg/40mg Tablet", "Pack Size": "10's", "Composition": "Each uncoated tablet contains:- Ezetimibe, 10mg Simvastatin, .40mg (As per Innovator Specifications)", "Category": "Cardiology / Lipidology", "Indications": "Hypercholesterolemia, mixed dyslipidemia", "Brand Leader": "Vytorin / Inegy", "Innovator Company": "Merck / Schering-Plough"}, {"S#": 155, "Reg. No.": 98307, "Dosage form": "ORALS", "Products Name": "Ulgin Liquid", "Pack Size": "120ml", "Composition": "Each 10ml contains:- Sodium Alginate, , , .500mg Sodium Bicarbonate, , , .267mg Calcium Carbonate, , , .160mg (BP Specification)", "Category": "Gastroenterology", "Indications": "Gastroesophageal reflux, heartburn", "Brand Leader": "Gaviscon", "Innovator Company": "Reckitt Benckiser"}, {"S#": 156, "Reg. No.": 94329, "Dosage form": "ORALS", "Products Name": "Vebuvir Tablets 400mg", "Pack Size": "28's", "Composition": "Each film coated tablet contains:-  Sofosbuvir, , , 400mg (As per *Innovator's Specification)", "Category": "Hepatology / Antivirals", "Indications": "Chronic Hepatitis C (HCV)", "Brand Leader": "Sovaldi", "Innovator Company": "Gilead Sciences"}, {"S#": 157, "Reg. No.": 99566, "Dosage form": "ORALS", "Products Name": "Vebuvir-L 400mg/90mg Tablets", "Pack Size": "28's", "Composition": "Each film coated tablet contains:-  Sofosbuvir, , , 400mg Ledipasvir & Copovidone solid dispersion, , .90mg (As per *Innovator's Specification)", "Category": "Hepatology / Antivirals", "Indications": "Chronic Hepatitis C genotype 1 and 4", "Brand Leader": "Harvoni", "Innovator Company": "Gilead Sciences"}, {"S#": 158, "Reg. No.": 102333, "Dosage form": "ORALS", "Products Name": "Vebvel Tablet", "Pack Size": "28's", "Composition": "Each film coated tablet contains: Sofosbuvir, , ..400mg Velpatasvir, .100mg (As per *Innovator Specifications)", "Category": "Hepatology / Antivirals", "Indications": "Chronic Hepatitis C (pan-genotypic)", "Brand Leader": "Epclusa", "Innovator Company": "Gilead Sciences"}, {"S#": 159, "Reg. No.": 96497, "Dosage form": "ORALS", "Products Name": "Wetrex 20/50mg Tablets", "Pack Size": "20's", "Composition": "Each film coated tablet contains:-  Furosemide, , 20mg  Spironolactone, 50mg (USP Specs.)", "Category": "Cardiology / Nephrology", "Indications": "Edema, ascites, heart failure, hypertension", "Brand Leader": "Lasilactone", "Innovator Company": "Sanofi"}, {"S#": 160, "Reg. No.": 101807, "Dosage form": "ORALS", "Products Name": "Wolide Tablet", "Pack Size": "12's", "Composition": "Each film coated tablet contains:-  Linezolid, , .600mg (USP Specifications)", "Category": "Antibiotics", "Indications": "Gram-positive infections, MRSA, VRE, pneumonia", "Brand Leader": "Zyvox", "Innovator Company": "Pfizer"}, {"S#": 161, "Reg. No.": 124578, "Dosage form": "ORALS", "Products Name": "Wolide 400mg Tablet", "Pack Size": "12's", "Composition": "Each film coated tablet contains:-  Linezolid, , .400mg (As Per Innovator's Specifications)", "Category": "Antibiotics", "Indications": "Gram-positive infections, MRSA, VRE", "Brand Leader": "Zyvox", "Innovator Company": "Pfizer"}, {"S#": 162, "Reg. No.": 119674, "Dosage form": "ORALS", "Products Name": "Wolide 100mg/5ml Suspension", "Pack Size": "60ml", "Composition": "Each film coated tablet contains:-  Linezolid, , .100mg (As per Innovator's Specifications)", "Category": "Antibiotics", "Indications": "Gram-positive infections in children, MRSA", "Brand Leader": "Zyvox", "Innovator Company": "Pfizer"}, {"S#": 163, "Reg. No.": 97380, "Dosage form": "ORALS", "Products Name": "Woxel 10/10mg Tablets", "Pack Size": "3x10's", "Composition": "Each enteric coated tablet contains:-  Doxylamine Succinate, ., , 10mg  Pyridoxine hydrochloride, 10mg (As per Innovator's Specifications)", "Category": "Gynecology / Obstetrics", "Indications": "Nausea and vomiting of pregnancy", "Brand Leader": "Diclegis / Bonjesta", "Innovator Company": "Duchesnay"}, {"S#": 164, "Reg. No.": 102598, "Dosage form": "ORALS", "Products Name": "Xazsin 2mg Tablet", "Pack Size": "10's 20's", "Composition": "Each tablet contains: Doxazosin as Mesylate, 2mg (USP Specifications)", "Category": "Cardiology / Urology", "Indications": "Hypertension, BPH", "Brand Leader": "Cardura", "Innovator Company": "Pfizer"}, {"S#": 165, "Reg. No.": 102599, "Dosage form": "ORALS", "Products Name": "Xazsin 4mg Tablet", "Pack Size": "20's", "Composition": "Each tablet contains: Doxazosin as Mesylate, 4mg (USP Specifications)", "Category": "Cardiology / Urology", "Indications": "Hypertension, BPH", "Brand Leader": "Cardura", "Innovator Company": "Pfizer"}, {"S#": 166, "Reg. No.": 18673, "Dosage form": "ORALS", "Products Name": "Xepil Tablets", "Pack Size": "50's", "Composition": "Each tablet contains:- Carbamazepine...200mg (USP Specifications)", "Category": "Neurology / Psychiatry", "Indications": "Epilepsy, trigeminal neuralgia, bipolar disorder", "Brand Leader": "Tegretol", "Innovator Company": "Novartis"}, {"S#": 167, "Reg. No.": 52626, "Dosage form": "ORALS", "Products Name": "Zedron Tablets 4mg", "Pack Size": "10's", "Composition": "Each film coated tablet contains :- Ondansetron Hcl eq. to Ondansetron, .4mg (USP Specs)", "Category": "Gastroenterology / Oncology", "Indications": "Nausea and vomiting (chemotherapy-induced, post-op)", "Brand Leader": "Zofran", "Innovator Company": "GSK"}, {"S#": 168, "Reg. No.": 123577, "Dosage form": "SACHET", "Products Name": "Cystexin 200mg Sachet", "Pack Size": "20's 1x10's", "Composition": "Each sachet contains:- Acetylcysteine, .200mg  (As per Innovator's Specifications)", "Category": "Respiratory / Hepatology", "Indications": "Mucolytic, paracetamol overdose, COPD", "Brand Leader": "Fluimucil / ACC", "Innovator Company": "Zambon / Sandoz"}, {"S#": 169, "Reg. No.": 131954, "Dosage form": "SACHET", "Products Name": "Fist 25mg Sachet", "Pack Size": "20's", "Composition": "Each sachet contains: Diclofenac sodium .................... 25mg (As per Innovator's Specifications)", "Category": "Analgesics / Rheumatology", "Indications": "Pain, inflammation, musculoskeletal disorders", "Brand Leader": "Voltaren", "Innovator Company": "Novartis"}, {"S#": 170, "Reg. No.": 123490, "Dosage form": "SACHET", "Products Name": "Kolesta Sachet", "Pack Size": "50's", "Composition": "Each sachet contains:- Cholestryamine, 4gm (As per Innovator's Specifications)", "Category": "Gastroenterology / Cardiology", "Indications": "Hypercholesterolemia, bile acid sequestration", "Brand Leader": "Questran", "Innovator Company": "Bristol-Myers Squibb"}, {"S#": 171, "Reg. No.": 123637, "Dosage form": "SACHET", "Products Name": "Racetrol 10mg Sachet", "Pack Size": "16's", "Composition": "Each sachet contains:-  Racecadotril, 10mg (As Per Innovator's Specifications)", "Category": "Gastroenterology", "Indications": "Acute secretory diarrhea in children", "Brand Leader": "Tiorfan", "Innovator Company": "Bioprojet"}, {"S#": 172, "Reg. No.": 123638, "Dosage form": "SACHET", "Products Name": "Racetrol 30mg Sachet", "Pack Size": "16's", "Composition": "Each sachet contains:-  Racecadotril, 30mg (As Per Innovator's Specifications)", "Category": "Gastroenterology", "Indications": "Acute secretory diarrhea", "Brand Leader": "Tiorfan", "Innovator Company": "Bioprojet"}, {"S#": 173, "Reg. No.": 121805, "Dosage form": "SOFT GEL", "Products Name": "DCad-3 50000IU Soft Gel Capsule", "Pack Size": "100's", "Composition": "Each capsule contains:- Vitamin D3 (Cholecalciferol), .50000IU (USP Specifications)", "Category": "Bone & Metabolic", "Indications": "Vitamin D deficiency, osteoporosis, rickets", "Brand Leader": "Dekristol / Rocaltrol", "Innovator Company": "Mibe Pharma / Roche"}, {"S#": 174, "Reg. No.": 90269, "Dosage form": "INJECTABLES", "Products Name": "Andogen Injection", "Pack Size": "3x1 ml", "Composition": "Each 1ml ampoule contains:- Testosterone enanthate, .250mg \" (USP Specifications)\"", "Category": "Endocrinology / Urology", "Indications": "Hypogonadism, testosterone deficiency, delayed puberty", "Brand Leader": "Testoviron Depot", "Innovator Company": "Schering / Bayer"}, {"S#": 175, "Reg. No.": 69893, "Dosage form": "INJECTABLES", "Products Name": "Anso Injection", "Pack Size": "1's", "Composition": "Each vial contains:- Lyophilized Lansoprazole sodium eq. to Lansoprazol, 30mg (Shaigan's Specs.)", "Category": "Gastroenterology", "Indications": "Peptic ulcer, GERD, Zollinger-Ellison (IV)", "Brand Leader": "Prevacid IV", "Innovator Company": "TAP Pharmaceutical"}, {"S#": 176, "Reg. No.": 115529, "Dosage form": "INJECTABLES", "Products Name": "Azitrax 500mg Injection", "Pack Size": "1's", "Composition": "Each Lyophilized vial contains:- Azithromycin Dihydrochloride eq. to Azithromycin, .500mg (USP Specification)", "Category": "Antibiotics", "Indications": "Community-acquired pneumonia, PID, skin infections (IV)", "Brand Leader": "Zithromax IV", "Innovator Company": "Pfizer"}, {"S#": 177, "Reg. No.": 132199, "Dosage form": "INJECTABLES", "Products Name": "Bifin 10mg/ml Injection", "Pack Size": "10'sx1ml", "Composition": "Each ml contains: Nalbuphine HCl ........................... 10mg (Aps per Innovator's Specifications)", "Category": "Analgesics / Anesthesiology", "Indications": "Moderate to severe pain, pre/post-operative analgesia", "Brand Leader": "Nubain", "Innovator Company": "Endo Pharmaceuticals"}, {"S#": 178, "Reg. No.": 132200, "Dosage form": "INJECTABLES", "Products Name": "Bifin 20mg/ml Injection", "Pack Size": "10'sx1ml", "Composition": "Each ml contains: Nalbuphine HCl ........................... 20mg (Aps per Innovator's Specifications)", "Category": "Analgesics / Anesthesiology", "Indications": "Moderate to severe pain, pre/post-operative analgesia", "Brand Leader": "Nubain", "Innovator Company": "Endo Pharmaceuticals"}, {"S#": 179, "Reg. No.": 34236, "Dosage form": "INJECTABLES", "Products Name": "Ceradin - 1000 Injection", "Pack Size": "1's", "Composition": "Each vial contains:- Cephradin, , 1g (BP Specifications)", "Category": "Antibiotics", "Indications": "Serious respiratory, urinary, skin infections (IV/IM)", "Brand Leader": "Velosef IV", "Innovator Company": "Bristol-Myers Squibb"}, {"S#": 180, "Reg. No.": 34237, "Dosage form": "INJECTABLES", "Products Name": "Ceradin - 500 Injection", "Pack Size": "1's", "Composition": "Each vial contains:- Cephradin, , 500mg (BP Specifications)", "Category": "Antibiotics", "Indications": "Serious respiratory, urinary, skin infections (IV/IM)", "Brand Leader": "Velosef IV", "Innovator Company": "Bristol-Myers Squibb"}, {"S#": 181, "Reg. No.": 34238, "Dosage form": "INJECTABLES", "Products Name": "Ceradin - 250 Injection", "Pack Size": "1's", "Composition": "Each vial contains:- Cephradin, , 250mg (BP Specifications)", "Category": "Antibiotics", "Indications": "Serious respiratory, urinary, skin infections (IV/IM)", "Brand Leader": "Velosef IV", "Innovator Company": "Bristol-Myers Squibb"}, {"S#": 182, "Reg. No.": 38359, "Dosage form": "INJECTABLES", "Products Name": "Cerome-1000 Injection", "Pack Size": "1's", "Composition": "Each vial contains:Cefpirome, 1gm", "Category": "Antibiotics", "Indications": "Serious hospital-acquired infections (IV)", "Brand Leader": "Cefrom", "Innovator Company": "Hoechst / Sanofi"}, {"S#": 183, "Reg. No.": 38360, "Dosage form": "INJECTABLES", "Products Name": "Cerome-500 Injection", "Pack Size": "1's", "Composition": "Each vial contains:Cefpirome, 0.500gm", "Category": "Antibiotics", "Indications": "Serious hospital-acquired infections (IV)", "Brand Leader": "Cefrom", "Innovator Company": "Hoechst / Sanofi"}, {"S#": 184, "Reg. No.": 131998, "Dosage form": "INJECTABLES", "Products Name": "Zeflox 200mg/100ml Infusion", "Pack Size": "100ml", "Composition": "Each ml contains: Ciprofloxacin as lactate .................. 2mg (USP Specifications)", "Category": "Antibiotics", "Indications": "Serious infections requiring IV therapy", "Brand Leader": "Cipro IV", "Innovator Company": "Bayer"}, {"S#": 185, "Reg. No.": 131957, "Dosage form": "INJECTABLES", "Products Name": "Coly-S 1MIU Injection IV", "Pack Size": "1's", "Composition": "Each lyophilized vial contains: Colistimethate sodium equivalent 1MIU eq. to 34mg Colistin base activity (approximately) corresponds to 80mg Colistimethate sodium (base) (USP Specifications)", "Category": "Antibiotics", "Indications": "MDR Gram-negative infections (IV)", "Brand Leader": "Colomycin / Colobreathe", "Innovator Company": "Forest Labs / Zambon"}, {"S#": 186, "Reg. No.": 133801, "Dosage form": "INJECTABLES", "Products Name": "Coly-S 2MIU Injection IV", "Pack Size": "1's", "Composition": "Each vial contains: Colistimethate sodium equivalent 2MIU eq.to 68mg Colistin base activity (approximately) corresponds to 160mg Colistimethate sodium (base) (USP Specifications)", "Category": "Antibiotics", "Indications": "MDR Gram-negative infections (IV)", "Brand Leader": "Colomycin / Colobreathe", "Innovator Company": "Forest Labs / Zambon"}, {"S#": 187, "Reg. No.": 133802, "Dosage form": "INJECTABLES", "Products Name": "Coly-S 4.5MIU Injection IV", "Pack Size": "1's", "Composition": "Each vial contains: Colistimethate sodium equivalent 4.5MIU eq.to 150mg Colistin base activity (approximately) corresponds to 360mg Colistimethate sodium (base) (USP Specifications)", "Category": "Antibiotics", "Indications": "MDR Gram-negative infections (IV)", "Brand Leader": "Colomycin / Colobreathe", "Innovator Company": "Forest Labs / Zambon"}, {"S#": 188, "Reg. No.": 84375, "Dosage form": "INJECTABLES", "Products Name": "Contrex Injection", "Pack Size": "2ml", "Composition": "Each ml contains:-  Hydroxyprogesterone caproate, .250, Estradiol valerate, .5mg , \"(As per *Innovator's Specifications)\"", "Category": "Gynecology / Obstetrics", "Indications": "Hormonal contraception, menstrual disorders", "Brand Leader": "Depo-Provera / Mesigyna", "Innovator Company": "Pfizer / Bayer"}, {"S#": 189, "Reg. No.": 34216, "Dosage form": "INJECTABLES", "Products Name": "Daisy-500mg Injection", "Pack Size": "1's", "Composition": "Each vial contains:-  Cefoperazone Sodium eq. to Cefoperazone, 500mg (USP Specifications)", "Category": "Antibiotics", "Indications": "Serious respiratory, urinary, abdominal infections (IV)", "Brand Leader": "Cefobid", "Innovator Company": "Pfizer"}, {"S#": 190, "Reg. No.": 34217, "Dosage form": "INJECTABLES", "Products Name": "Daisy-1000mg Injection", "Pack Size": "1's", "Composition": "Each vial contains:-  Cefoperazone Sodium eq. to Cefoperazone, 1000mg (USP Specifications)", "Category": "Antibiotics", "Indications": "Serious respiratory, urinary, abdominal infections (IV)", "Brand Leader": "Cefobid", "Innovator Company": "Pfizer"}, {"S#": 191, "Reg. No.": 90270, "Dosage form": "INJECTABLES", "Products Name": "Ditone F2 Injection", "Pack Size": "1 ml x 1's", "Composition": "Each 1ml ampoule contains:- Dinoprostone as tromethamine, .5mg \" (USP Specifications)\"", "Category": "Gynecology / Obstetrics", "Indications": "Cervical ripening, labor induction", "Brand Leader": "Prostin E2", "Innovator Company": "Pfizer"}, {"S#": 192, "Reg. No.": 131723, "Dosage form": "INJECTABLES", "Products Name": "Dopa-200 Injection", "Pack Size": "5mlx1Âs", "Composition": "Each 5ml contains: Dopamine Hydrochloride ........ 200mg (USP Specification)", "Category": "Cardiology / Critical Care", "Indications": "Cardiogenic shock, septic shock, acute heart failure", "Brand Leader": "Intropin", "Innovator Company": "Hospira / Pfizer"}, {"S#": 193, "Reg. No.": 66614, "Dosage form": "INJECTABLES", "Products Name": "Ergomin Injection 0.2mg", "Pack Size": "50x1ml Amps.", "Composition": "Each 1ml contains:- Methylergometrine Maleate 0.2mg (USP Specs.)", "Category": "Gynecology / Obstetrics", "Indications": "Postpartum hemorrhage, uterine atony", "Brand Leader": "Methergine", "Innovator Company": "Novartis"}, {"S#": 194, "Reg. No.": 109368, "Dosage form": "INJECTABLES", "Products Name": "Eptigan Infusion", "Pack Size": "100ml x 1's", "Composition": "Each 100ml contains:- Eptifibatide, , 75mg (As per *Innovator's Specification)", "Category": "Cardiology / Hematology", "Indications": "ACS, percutaneous coronary intervention (antiplatelet)", "Brand Leader": "Integrilin", "Innovator Company": "Schering-Plough / GSK"}, {"S#": 195, "Reg. No.": 131948, "Dosage form": "INJECTABLES", "Products Name": "Fluziwell 200mg/100ml Infusion", "Pack Size": "100ml", "Composition": "Each 100ml contains: Fluconazole ........ 200mg (USP Specifications) ***[Fluconazole with Sodium Chloride 0.9%]", "Category": "Antifungals", "Indications": "Systemic candidiasis, cryptococcal meningitis (IV)", "Brand Leader": "Diflucan IV", "Innovator Company": "Pfizer"}, {"S#": 196, "Reg. No.": 133824, "Dosage form": "INJECTABLES", "Products Name": "G-MYC 20mg/2ml Inection", "Pack Size": "2mlx5's", "Composition": "Each 2ml contains: Gentamycin as Sulphate, ..20mg (BP Spec)", "Category": "Antibiotics", "Indications": "Serious Gram-negative infections, septicemia (IV/IM)", "Brand Leader": "Garamycin", "Innovator Company": "Schering-Plough"}, {"S#": 197, "Reg. No.": 94205, "Dosage form": "INJECTABLES", "Products Name": "Hygest Injection", "Pack Size": "1mlx3's", "Composition": "Each 1ml ampoule contains:-  Hydroxyprogesterone caproate, .250 (USP Specifications)", "Category": "Gynecology / Obstetrics", "Indications": "Prevention of preterm birth, progesterone deficiency", "Brand Leader": "Delalutin / Makena", "Innovator Company": "Makena Care Group"}, {"S#": 198, "Reg. No.": 46303, "Dosage form": "INJECTABLES", "Products Name": "Irose Injection I.M.", "Pack Size": "5x5ml", "Composition": "Iron sucrose complex eq. to elemental Iron, 100mg. (USP Specifications)", "Category": "Hematology / Nephrology", "Indications": "Iron deficiency anemia (IV, especially in CKD)", "Brand Leader": "Venofer", "Innovator Company": "Vifor Pharma / American Regent"}, {"S#": 199, "Reg. No.": 131955, "Dosage form": "INJECTABLES", "Products Name": "L-Cin 600mg/2ml Injection", "Pack Size": "2mlx5's", "Composition": "Each 2ml contains: Lincomycin as hydrochloride monohydrate ............... 600mg (USP Specifications)", "Category": "Antibiotics", "Indications": "Serious Gram-positive infections, bone infections", "Brand Leader": "Lincocin", "Innovator Company": "Pfizer"}, {"S#": 200, "Reg. No.": 45570, "Dosage form": "INJECTABLES", "Products Name": "L-ride Injection I.M.", "Pack Size": "2mlx50's", "Composition": "Each ml contains:- Lidocaine HCL, , 1% (USP Specifications)", "Category": "Anesthesiology / Cardiology", "Indications": "Local anesthesia, ventricular arrhythmias", "Brand Leader": "Xylocaine", "Innovator Company": "AstraZeneca"}, {"S#": 201, "Reg. No.": 132202, "Dosage form": "INJECTABLES", "Products Name": "Madol 100mg/2ml Injection", "Pack Size": "2mlx5's", "Composition": "Each 2ml contains: Tramadol HCl ....................... 100mg (BP Specifications)", "Category": "Analgesics", "Indications": "Moderate to severe pain (post-operative, chronic)", "Brand Leader": "Tramal / Ultram", "Innovator Company": "Grunenthal / Janssen"}, {"S#": 202, "Reg. No.": 131950, "Dosage form": "INJECTABLES", "Products Name": "Metni 500mg/100ml infusion", "Pack Size": "100ml", "Composition": "Each 100ml contains: Metronidazole ......................... 500mg BP Specifications", "Category": "Antibiotics / Gastroenterology", "Indications": "Anaerobic infections, H. pylori (IV)", "Brand Leader": "Flagyl IV", "Innovator Company": "Sanofi"}, {"S#": 203, "Reg. No.": 48091, "Dosage form": "INJECTABLES", "Products Name": "Nisale Injection I.V.", "Pack Size": "5mlx100's", "Composition": "Each ampoule contains:- Sodium Chloride, 0.9% (USP)", "Category": "Critical Care / IV Fluids", "Indications": "Fluid replacement, hyponatremia, drug dilution", "Brand Leader": "Normal Saline", "Innovator Company": "Baxter / B. Braun"}, {"S#": 204, "Reg. No.": 84354, "Dosage form": "INJECTABLES", "Products Name": "Nisale Injection I.V.", "Pack Size": "5ml", "Composition": "Each ml contains:- Sodium Chloride, 9mg (USP Specifications)", "Category": "Critical Care / IV Fluids", "Indications": "Fluid replacement, hyponatremia, drug dilution", "Brand Leader": "Normal Saline", "Innovator Company": "Baxter / B. Braun"}, {"S#": 205, "Reg. No.": 132179, "Dosage form": "INJECTABLES", "Products Name": "Nisale 0.9% Infusion 100ml", "Pack Size": "100ml", "Composition": "Each 100ml contains: Sodium chloride ............ 0.9gm", "Category": "Critical Care / IV Fluids", "Indications": "Fluid replacement, hyponatremia, drug dilution", "Brand Leader": "Normal Saline", "Innovator Company": "Baxter / B. Braun"}, {"S#": 206, "Reg. No.": 131956, "Dosage form": "INJECTABLES", "Products Name": "Norbitrate 4mg/4ml Injection", "Pack Size": "4mlx1's", "Composition": "Each 4ml contains: Noradrenaline Bitartrate eq. to Noradrenaline ........ 4mg (USP Specifications)", "Category": "Cardiology / Critical Care", "Indications": "Septic shock, cardiogenic shock, hypotension", "Brand Leader": "Levophed", "Innovator Company": "Hospira / Pfizer"}, {"S#": 207, "Reg. No.": 131953, "Dosage form": "INJECTABLES", "Products Name": "Orniplex 5g/10ml Injection", "Pack Size": "10mlx1's", "Composition": "Each 10ml contains: L-Ornithine L- Aspartate ......................... 5gm (As per Innovator's Specifications)", "Category": "Gastroenterology / Hepatology", "Indications": "Hepatic encephalopathy, hyperammonemia", "Brand Leader": "Hepa-Merz", "Innovator Company": "Merz Pharma"}, {"S#": 208, "Reg. No.": 38377, "Dosage form": "INJECTABLES", "Products Name": "Peflox Injection", "Pack Size": "1x125ml", "Composition": "Pefloxacin (mesylate dihydrate), 400mg", "Category": "Antibiotics", "Indications": "Serious Gram-negative infections, urinary tract infections", "Brand Leader": "Peflacine", "Innovator Company": "Sanofi"}, {"S#": 209, "Reg. No.": 84355, "Dosage form": "INJECTABLES", "Products Name": "Takeze 4mg Injection", "Pack Size": "2mlx6's", "Composition": "Each 2ml ampoule contains:- Thiocolchicoside, 4mg (As per *Innovator's Specifications)\" The firm shall mecntion USFDA approved black box warning on the label\".", "Category": "Neurology / Muscle Relaxants", "Indications": "Acute muscle spasm, contractures (IM)", "Brand Leader": "Muscoril", "Innovator Company": "Sanofi"}, {"S#": 210, "Reg. No.": 131952, "Dosage form": "INJECTABLES", "Products Name": "Trulac 30mg/ml Injection", "Pack Size": "1mlx5's", "Composition": "Ech ml contains: Ketorolac Tromethamine ..................... 30mg", "Category": "Analgesics / Anti-inflammatory", "Indications": "Post-operative pain management (IM)", "Brand Leader": "Toradol", "Innovator Company": "Roche / Pfizer"}, {"S#": 211, "Reg. No.": 131721, "Dosage form": "INJECTABLES", "Products Name": "Tranexol 250mg/5ml Injection", "Pack Size": "10'sx5ml", "Composition": "Each 5ml contains: Tranexamic Acid ............... 250mg (JP Specifications)", "Category": "Hematology / Surgery", "Indications": "Fibrinolytic bleeding, postpartum hemorrhage, surgery", "Brand Leader": "Cyklokapron", "Innovator Company": "Pfizer / Pharmacia"}, {"S#": 212, "Reg. No.": 131722, "Dosage form": "INJECTABLES", "Products Name": "Tranexol 500mg/5ml Injection", "Pack Size": "10'sx5ml", "Composition": "Each 5ml contains: Tranexamic acid ................. 500mg (JP Specifications)", "Category": "Hematology / Surgery", "Indications": "Fibrinolytic bleeding, postpartum hemorrhage, surgery", "Brand Leader": "Cyklokapron", "Innovator Company": "Pfizer / Pharmacia"}, {"S#": 213, "Reg. No.": 35535, "Dosage form": "INJECTABLES", "Products Name": "Sterile WFI - Injection", "Pack Size": "1x2ml 1x5ml 1x10ml", "Composition": "Each ampoule contains:- Water for Injection  (USP Specifications)", "Category": "Critical Care / IV Fluids", "Indications": "Solvent for parenteral drug preparation", "Brand Leader": "Water for Injection BP", "Innovator Company": "Various"}, {"S#": 214, "Reg. No.": 84352, "Dosage form": "INJECTABLES", "Products Name": "Water for Injection", "Pack Size": "1ml", "Composition": "Each ampoule contains:- Water for Injection  (USP Specifications)", "Category": "Critical Care / IV Fluids", "Indications": "Solvent for parenteral drug preparation", "Brand Leader": "Water for Injection BP", "Innovator Company": "Various"}, {"S#": 215, "Reg. No.": 68823, "Dosage form": "INJECTABLES", "Products Name": "Warfin Injection", "Pack Size": "1's", "Composition": "Each vial contains:-  Lyophilized Powder/cake warfarin Sodium, , 5mg  (USP Specifications)", "Category": "Cardiology / Hematology", "Indications": "Anticoagulation, thromboembolic disorders", "Brand Leader": "Coumadin", "Innovator Company": "Bristol-Myers Squibb"}, {"S#": 216, "Reg. No.": 131951, "Dosage form": "INJECTABLES", "Products Name": "Wolide 200mg/100ml Infusion", "Pack Size": "100ml", "Composition": "Each 100ml contains: Linezolid ......................... 200mg As per Innovator's Specifications", "Category": "Antibiotics", "Indications": "Gram-positive infections, MRSA, VRE (IV)", "Brand Leader": "Zyvox IV", "Innovator Company": "Pfizer"}, {"S#": 217, "Reg. No.": 131720, "Dosage form": "INJECTABLES", "Products Name": "V-Com 500mg Injection", "Pack Size": "1's", "Composition": "Each vial contains: Vancomycin hydrochloride eq. to Vancomycin ...... 500mg (USP Specifications)", "Category": "Antibiotics", "Indications": "MRSA, C. difficile, serious Gram-positive infections", "Brand Leader": "Vancocin", "Innovator Company": "Eli Lilly / Viropharma"}, {"S#": 218, "Reg. No.": 42573, "Dosage form": "INJECTABLES", "Products Name": "Zedron Injection 2mg/4ml", "Pack Size": "4mlx5's", "Composition": "Each vail contains:- Ondansetron Hydrochloride equivalent to Ondensetron, 2mg (USP Specifications)", "Category": "Gastroenterology / Oncology", "Indications": "Nausea and vomiting (IV, chemotherapy-induced)", "Brand Leader": "Zofran IV", "Innovator Company": "GSK"}, {"S#": 219, "Reg. No.": 132101, "Dosage form": "INJECTABLES", "Products Name": "Zolric 4mg/100ml Infusion", "Pack Size": "100ml", "Composition": "Each 100ml contains: Zoledronic acid monohydrate eq. to Zoledronic acid anhydrous ................... 4mg As per Innovators Specification", "Category": "Bone & Metabolic / Oncology", "Indications": "Osteoporosis, hypercalcemia of malignancy, bone metastases", "Brand Leader": "Zometa", "Innovator Company": "Novartis"}, {"S#": 220, "Reg. No.": 131949, "Dosage form": "INJECTABLES", "Products Name": "Zolric 5mg/100ml Infusion", "Pack Size": "100ml", "Composition": "Each 100ml contains: Zoledronic acid monohydrate eq. to Zoledronic acid anhydrous .......... 5mg As per Innovators Specification", "Category": "Bone & Metabolic / Oncology", "Indications": "Osteoporosis prevention and treatment (annual IV)", "Brand Leader": "Reclast / Aclasta", "Innovator Company": "Novartis"}, {"S#": 221, "Reg. No.": 89682, "Dosage form": "CREAM, OINTMENT, GEL, LOTION", "Products Name": "Acrogel Gel", "Pack Size": "10gm", "Composition": "Each gm contains:- Polyacrylic acid, , 2mg  (As per *Innovator's Specifications)", "Category": "Dermatology", "Indications": "Wounds, burns, skin protection barrier", "Brand Leader": "Carbopol-based Gel", "Innovator Company": "Various"}, {"S#": 222, "Reg. No.": 51173, "Dosage form": "CREAM, OINTMENT, GEL, LOTION", "Products Name": "Adag Gel", "Pack Size": "10gm 15gm 30gm", "Composition": "Each gm gel contains:-  Adapalene, 100mg (USP Specfications)", "Category": "Dermatology", "Indications": "Acne vulgaris", "Brand Leader": "Differin", "Innovator Company": "Galderma"}, {"S#": 223, "Reg. No.": 84353, "Dosage form": "CREAM, OINTMENT, GEL, LOTION", "Products Name": "Anacor Ointment", "Pack Size": "15gm 30gm", "Composition": "Each gram of ointment contains:- Betamethasone as dipropionate, 0.5mg Salicylic acid, .30mg (As per *Innovator's Specifications)", "Category": "Dermatology", "Indications": "Psoriasis, seborrhoeic dermatitis, eczema", "Brand Leader": "Diprosalic", "Innovator Company": "MSD / Schering-Plough"}, {"S#": 224, "Reg. No.": 94202, "Dosage form": "CREAM, OINTMENT, GEL, LOTION", "Products Name": "Anaderm Ointment", "Pack Size": "15gm", "Composition": "Each g ointment contains:- Flumetasone Pivalate USP..., 0.02% Salicylic Acid USP, .3%  (As per *Innovator's Specifications)", "Category": "Dermatology", "Indications": "Psoriasis, lichen planus, hyperkeratosis", "Brand Leader": "Locasalen", "Innovator Company": "Meda / Mylan"}, {"S#": 225, "Reg. No.": 85370, "Dosage form": "CREAM, OINTMENT, GEL, LOTION", "Products Name": "Aricort Cream", "Pack Size": "10gm", "Composition": "Each gm of cream contains:- Triamcinolone acetonide, 1mg Neomycin as sulphate ..2.5mg, Gramicidin, .0.25mg Nystatin, , 100,000 Unit (USP Specifications)", "Category": "Dermatology", "Indications": "Inflammatory skin infections, eczema with secondary infection", "Brand Leader": "Kenacomb", "Innovator Company": "Bristol-Myers Squibb"}, {"S#": 226, "Reg. No.": 132582, "Dosage form": "CREAM, OINTMENT, GEL, LOTION", "Products Name": "Betameth-C 0.05mg/0.5mg", "Pack Size": "15gm", "Composition": "Each gm contains: Calcipotriol as Monohydrate, ..0.05mg Betamethasone as Dipropionate, ....0.5mg (BP Specifications)", "Category": "Dermatology", "Indications": "Plaque psoriasis (scalp and body)", "Brand Leader": "Daivobet / Taclonex", "Innovator Company": "Leo Pharma"}, {"S#": 227, "Reg. No.": 25949, "Dosage form": "CREAM, OINTMENT, GEL, LOTION", "Products Name": "Clovir Cream", "Pack Size": "10gm 20gm", "Composition": "contains:- Acyclovir, 5%", "Category": "Dermatology / Antivirals", "Indications": "Herpes labialis, herpes simplex (topical)", "Brand Leader": "Zovirax Cream", "Innovator Company": "GSK"}, {"S#": 228, "Reg. No.": 51097, "Dosage form": "CREAM, OINTMENT, GEL, LOTION", "Products Name": "Clozox Lotion", "Pack Size": "30ml", "Composition": "Each ml contains:-Clotrimazole, 10mg (USP Specifications)", "Category": "Dermatology / Antifungals", "Indications": "Superficial fungal infections, tinea, candidiasis", "Brand Leader": "Canesten Lotion", "Innovator Company": "Bayer"}, {"S#": 229, "Reg. No.": 65480, "Dosage form": "CREAM, OINTMENT, GEL, LOTION", "Products Name": "Clycin Plus Lotion", "Pack Size": "30ml", "Composition": "Each ml contains:- Clindamycin Phosphate  10mg Benzoyl Peroxide 50mg  (Shaigan's Specs.)", "Category": "Dermatology", "Indications": "Acne vulgaris", "Brand Leader": "BenzaClin / Duac", "Innovator Company": "Stiefel / GSK"}, {"S#": 230, "Reg. No.": 94204, "Dosage form": "CREAM, OINTMENT, GEL, LOTION", "Products Name": "Cutem Ointment", "Pack Size": "10gm", "Composition": "Each gram of ointment contains:- Tacalcitol as monohydrate, 2, µg  (JP Specifications)", "Category": "Dermatology", "Indications": "Plaque psoriasis", "Brand Leader": "Curatoderm", "Innovator Company": "Hermal / Stiefel"}, {"S#": 231, "Reg. No.": 84373, "Dosage form": "CREAM, OINTMENT, GEL, LOTION", "Products Name": "Derivax Ointment", "Pack Size": "30gm", "Composition": "Each gram of ointment contains:- Calcipotriol as monohydrate, 50, µg  (BP Specifications)", "Category": "Dermatology", "Indications": "Plaque psoriasis", "Brand Leader": "Daivonex / Dovonex", "Innovator Company": "Leo Pharma"}, {"S#": 232, "Reg. No.": 94203, "Dosage form": "CREAM, OINTMENT, GEL, LOTION", "Products Name": "Derivax Cream", "Pack Size": "30gm", "Composition": "Each gram of cream contains:- Calcipotriol as monohydrate, 50, µg  (BP Specifications)", "Category": "Dermatology", "Indications": "Plaque psoriasis", "Brand Leader": "Daivonex / Dovonex", "Innovator Company": "Leo Pharma"}, {"S#": 233, "Reg. No.": 85371, "Dosage form": "CREAM, OINTMENT, GEL, LOTION", "Products Name": "Dicort Cream", "Pack Size": "10gm", "Composition": "Each gm of cream contains:- Diflucortolone Valerate, 1mg Isconazole nitrate, .10mg (As per *Innovator's Specification)", "Category": "Dermatology", "Indications": "Inflammatory fungal skin infections, intertrigo", "Brand Leader": "Travocort", "Innovator Company": "Bayer"}, {"S#": 234, "Reg. No.": 106458, "Dosage form": "CREAM, OINTMENT, GEL, LOTION", "Products Name": "Dsant Lotion", "Pack Size": "10gm", "Composition": "Each gm contains:- Prednicarbate, 2.5mg (As per *Innovator's Specification)", "Category": "Dermatology", "Indications": "Inflammatory skin conditions, eczema, atopic dermatitis", "Brand Leader": "Dermatop", "Innovator Company": "Hoechst / Sanofi"}, {"S#": 235, "Reg. No.": 106459, "Dosage form": "CREAM, OINTMENT, GEL, LOTION", "Products Name": "Fultun Lotion", "Pack Size": "20ml", "Composition": "Each gm contains:- Fluticasone  propionate, , .0.5mg (USP Specification)", "Category": "Dermatology", "Indications": "Inflammatory skin conditions, eczema, psoriasis", "Brand Leader": "Cutivate", "Innovator Company": "GSK"}, {"S#": 236, "Reg. No.": 83591, "Dosage form": "CREAM, OINTMENT, GEL, LOTION", "Products Name": "Flutisone Cream", "Pack Size": "5gm", "Composition": "Each gram of cream contains:- Fluticasone  propionate, , .0.5mg (USP Specification)", "Category": "Dermatology", "Indications": "Inflammatory skin conditions, eczema, psoriasis", "Brand Leader": "Cutivate", "Innovator Company": "GSK"}, {"S#": 237, "Reg. No.": 82471, "Dosage form": "CREAM, OINTMENT, GEL, LOTION", "Products Name": "Kimex Cream", "Pack Size": "15gm", "Composition": "Each gram of cream contains:- Eflornithine hydrochloride (as monohydrate), 13.9% (As per Innovator's Spcifications)", "Category": "Dermatology", "Indications": "Reduction of facial hair (hirsutism) in women", "Brand Leader": "Vaniqa", "Innovator Company": "SkinMedica / Allergan"}, {"S#": 238, "Reg. No.": 133866, "Dosage form": "CREAM, OINTMENT, GEL, LOTION", "Products Name": "Ketowin 2%w/w Shampoo", "Pack Size": "60ml", "Composition": "Each gram contains: Ketoconazole .................. 20mg (BP Specifications)", "Category": "Dermatology / Antifungals", "Indications": "Seborrhoeic dermatitis, dandruff, pityriasis versicolor", "Brand Leader": "Nizoral Shampoo", "Innovator Company": "Janssen"}, {"S#": 239, "Reg. No.": 51124, "Dosage form": "CREAM, OINTMENT, GEL, LOTION", "Products Name": "Line Cream", "Pack Size": "50gm", "Composition": "Each gm contains:-Lindane, 10mg (USP Specifications)", "Category": "Dermatology", "Indications": "Scabies, pediculosis (head lice)", "Brand Leader": "Kwell / Scabene", "Innovator Company": "Reed & Carnrick"}, {"S#": 240, "Reg. No.": 51125, "Dosage form": "CREAM, OINTMENT, GEL, LOTION", "Products Name": "Line Lotion", "Pack Size": "60ml", "Composition": "Each ml contains:- Lindane, .10mg (USP Specifications)", "Category": "Dermatology", "Indications": "Scabies, pediculosis (head lice)", "Brand Leader": "Kwell / Scabene", "Innovator Company": "Reed & Carnrick"}, {"S#": 241, "Reg. No.": 106457, "Dosage form": "CREAM, OINTMENT, GEL, LOTION", "Products Name": "Mtsone Lotion", "Pack Size": "20ml", "Composition": "Each gm contains:- Mometasone Furoate, 1mg (As per * Inovator Specifications)", "Category": "Dermatology", "Indications": "Inflammatory skin conditions, atopic dermatitis, psoriasis", "Brand Leader": "Elocon", "Innovator Company": "MSD / Schering-Plough"}, {"S#": 242, "Reg. No.": 65232, "Dosage form": "CREAM, OINTMENT, GEL, LOTION", "Products Name": "Zexide- B Cream", "Pack Size": "15gm", "Composition": "Each gm contains:- Zinc Oxide USP..85mg, Benzalkonium Chloride, .1mg. (USP Specs.)", "Category": "Dermatology", "Indications": "Diaper rash, wound protection, minor skin irritation", "Brand Leader": "Penaten / Desitin", "Innovator Company": "Johnson & Johnson"}, {"S#": 243, "Reg. No.": 65233, "Dosage form": "CREAM, OINTMENT, GEL, LOTION", "Products Name": "Zexide Ointment", "Pack Size": "15gm", "Composition": "Each gm contains:- Zinc Oxide, .200mg,   (USP Specs.)", "Category": "Dermatology", "Indications": "Diaper rash, wound healing, minor skin conditions", "Brand Leader": "Penaten / Desitin", "Innovator Company": "Johnson & Johnson"}, {"S#": 244, "Reg. No.": 38363, "Dosage form": "OPHTHALMICS", "Products Name": "Betameth Ophthalmic \nSolution", "Pack Size": "7.5ml", "Composition": "Each ml contains:-  Betamethasone Sodium Phosphate, 0.1% (BP Specifications)", "Category": "Ophthalmology", "Indications": "Anterior segment inflammation, allergic conjunctivitis", "Brand Leader": "Betnesol Eye Drops", "Innovator Company": "UCB / GSK"}, {"S#": 245, "Reg. No.": 38364, "Dosage form": "OPHTHALMICS", "Products Name": "Betameth-N Ophthalmic Solution", "Pack Size": "7.5ml", "Composition": "Each ml contains:- Betamethasone, 0.1% Neomycin, , .0.5%", "Category": "Ophthalmology", "Indications": "Bacterial conjunctivitis with inflammation", "Brand Leader": "Betnesol-N", "Innovator Company": "UCB / GSK"}, {"S#": 246, "Reg. No.": 51175, "Dosage form": "OPHTHALMICS", "Products Name": "Betax Ophthalmic Solution", "Pack Size": "5ml 10ml", "Composition": "Each ml contains:- Levobetaxolol (as Hcl), .5mg (Shaigan's Spec)", "Category": "Ophthalmology", "Indications": "Open-angle glaucoma, ocular hypertension", "Brand Leader": "Betaxon", "Innovator Company": "Alcon"}, {"S#": 247, "Reg. No.": 105814, "Dosage form": "OPHTHALMICS", "Products Name": "Britlol Ophthalmic Solution", "Pack Size": "5ml", "Composition": "Each ml contains:- Brimonidine Tartrate, .2mg Timolol as maleate, .5mg (As per *inovator's specifications)", "Category": "Ophthalmology", "Indications": "Glaucoma, ocular hypertension (IOP reduction)", "Brand Leader": "Combigan", "Innovator Company": "Allergan"}, {"S#": 248, "Reg. No.": 38365, "Dosage form": "OPHTHALMICS", "Products Name": "Zeflox Ophthalmic Solution", "Pack Size": "5ml", "Composition": "Each ml contains:-  Ciprofloxacin (as HCI), , 0.3%w/v USP Specifications)", "Category": "Ophthalmology", "Indications": "Bacterial conjunctivitis, corneal ulcers", "Brand Leader": "Ciloxan", "Innovator Company": "Alcon"}, {"S#": 249, "Reg. No.": 33667, "Dosage form": "OPHTHALMICS", "Products Name": "Cromox Ophthalmic Solution", "Pack Size": "5ml", "Composition": "Sodium Cromoglycate. 2.0%", "Category": "Ophthalmology / Allergy", "Indications": "Allergic conjunctivitis", "Brand Leader": "Opticrom", "Innovator Company": "Sanofi"}, {"S#": 250, "Reg. No.": 36643, "Dosage form": "OPHTHALMICS", "Products Name": "Fudic Eye Drops", "Pack Size": "5ml", "Composition": "Each ml contains:- Fusidic Acid 1% (BP Specifications)", "Category": "Ophthalmology", "Indications": "Bacterial conjunctivitis (Staphylococcal)", "Brand Leader": "Fucithalmic", "Innovator Company": "Leo Pharma"}, {"S#": 251, "Reg. No.": 48093, "Dosage form": "OPHTHALMICS", "Products Name": "Opfen Ophthalmic Solution", "Pack Size": "5ml", "Composition": "Each ml contains:- Ketotifen (as Fumarate), , .0.5mg", "Category": "Ophthalmology / Allergy", "Indications": "Allergic conjunctivitis", "Brand Leader": "Zaditor / Alaway", "Innovator Company": "Novartis / Alcon"}, {"S#": 252, "Reg. No.": 83596, "Dosage form": "OPHTHALMICS", "Products Name": "Stenol Ophthalmic Suspension", "Pack Size": "5ml", "Composition": "Each ml contains:- Loteprednol Etabonate, .5mg (As per Innovator's Specification)", "Category": "Ophthalmology", "Indications": "Post-operative inflammation, allergic conjunctivitis", "Brand Leader": "Lotemax", "Innovator Company": "Bausch & Lomb"}, {"S#": 253, "Reg. No.": 92107, "Dosage form": "OPHTHALMICS", "Products Name": "Stenol  T Ophthalmic Suspension", "Pack Size": "5ml", "Composition": "Each ml contains:- Loteprednol Etabonate, .5mg Tobramycin, 3mg (As per Innovator's Specification)", "Category": "Ophthalmology", "Indications": "Steroid-responsive inflammation with bacterial infection", "Brand Leader": "Zylet", "Innovator Company": "Bausch & Lomb"}, {"S#": 254, "Reg. No.": 83593, "Dosage form": "OPHTHALMICS", "Products Name": "Solone Ophthalmic Suspension", "Pack Size": "5mlx1's", "Composition": "Each ml contains:- Prednisolone acetate, .1%w/v (USP Specification)", "Category": "Ophthalmology", "Indications": "Anterior uveitis, ocular inflammation", "Brand Leader": "Pred Forte", "Innovator Company": "Allergan"}, {"S#": 255, "Reg. No.": 84303, "Dosage form": "OPHTHALMICS", "Products Name": "Trulac Ophthalmic Solution", "Pack Size": "5ml", "Composition": "Each ml contains:-  Ketorolac Tromethamine, .0.5% (As per Innovator's Specification)", "Category": "Ophthalmology", "Indications": "Post-operative inflammation, allergic conjunctivitis", "Brand Leader": "Acular", "Innovator Company": "Allergan"}];
+
+const PWD = 'Abc@123';
+let allData = JSON.parse(JSON.stringify(INITIAL_DATA));
+let filteredData = [...allData];
+let currentPage = 1;
+const PPC = 24, PPL = 50;
+let currentView = 'cards';
+let pendingAction = null;
+let pendingFileData = null;
+
+const FCFG = {
+  'ORALS':                        {c:'#5b8fff',bg:'rgba(91,143,255,0.11)',bo:'rgba(91,143,255,0.28)',lbl:'💊 Orals'},
+  'INJECTABLES':                  {c:'#ff5a72',bg:'rgba(255,90,114,0.11)',bo:'rgba(255,90,114,0.28)',lbl:'💉 Injectables'},
+  'SACHET':                       {c:'#22e8a0',bg:'rgba(34,232,160,0.11)',bo:'rgba(34,232,160,0.28)',lbl:'🧂 Sachet'},
+  'SOFT GEL':                     {c:'#9b6dff',bg:'rgba(155,109,255,0.11)',bo:'rgba(155,109,255,0.28)',lbl:'🫧 Soft Gel'},
+  'CREAM, OINTMENT, GEL, LOTION': {c:'#ff5ec4',bg:'rgba(255,94,196,0.11)',bo:'rgba(255,94,196,0.28)',lbl:'🧴 Topicals'},
+  'OPHTHALMICS':                  {c:'#29e8ff',bg:'rgba(41,232,255,0.11)',bo:'rgba(41,232,255,0.28)',lbl:'👁 Ophthalmics'},
+};
+function fcfg(form) {
+  if(!form) return {c:'#6678a0',bg:'rgba(102,120,160,0.1)',bo:'rgba(102,120,160,0.25)',lbl:'—'};
+  return FCFG[form] || {c:'#6678a0',bg:'rgba(102,120,160,0.1)',bo:'rgba(102,120,160,0.25)',lbl:form};
+}
+
+function init() { populateFilters(); renderStats(); applyFilters(); renderAllBrands(); renderManageSummary(); }
+
+function renderStats() {
+  const forms={};
+  allData.forEach(r=>{const f=r['Dosage form']||'Other';forms[f]=(forms[f]||0)+1;});
+  const items=[
+    {num:allData.length,lbl:'Total Brands',c:'var(--cyan)'},
+    ...Object.entries(forms).sort((a,b)=>b[1]-a[1]).map(([f,n])=>{
+      const cfg=fcfg(f);return{num:n,lbl:cfg.lbl.replace(/^\S+ /,''),c:cfg.c};
+    })
+  ];
+  document.getElementById('statsBar').innerHTML=items.map(s=>
+    `<div class="stat-card" style="--c:${s.c}"><div class="stat-num">${s.num}</div><div class="stat-lbl">${s.lbl}</div></div>`
+  ).join('');
+}
+
+function populateFilters() {
+  const forms=[...new Set(allData.map(r=>r['Dosage form']).filter(Boolean))].sort();
+  const cats=[...new Set(allData.map(r=>r['Category']).filter(Boolean))].sort();
+  const innovators=[...new Set(allData.map(r=>r['Innovator Company']).filter(Boolean))].sort();
+
+  document.getElementById('filterForm').innerHTML=
+    '<option value="">All Dosage Forms</option>'+forms.map(f=>`<option>${esc(f)}</option>`).join('');
+  document.getElementById('filterCategory').innerHTML=
+    '<option value="">All Categories</option>'+cats.map(c=>`<option>${esc(c)}</option>`).join('');
+  document.getElementById('filterInnovator').innerHTML=
+    '<option value="">All Innovators</option>'+innovators.map(c=>`<option>${esc(c)}</option>`).join('');
+}
+
+function applyFilters() {
+  const q=document.getElementById('searchInput').value.toLowerCase().trim();
+  const form=document.getElementById('filterForm').value;
+  const cat=document.getElementById('filterCategory').value;
+  const inn=document.getElementById('filterInnovator').value;
+
+  filteredData=allData.filter(r=>{
+    if(form && r['Dosage form']!==form) return false;
+    if(cat  && r['Category']!==cat) return false;
+    if(inn  && r['Innovator Company']!==inn) return false;
+    if(q){
+      const hay=Object.values(r).filter(Boolean).join(' ').toLowerCase();
+      if(!hay.includes(q)) return false;
+    }
+    return true;
+  });
+  currentPage=1;
+  document.getElementById('resultCount').textContent=filteredData.length;
+  document.getElementById('totalCount').textContent=allData.length;
+  const active=[q&&'Search',form&&'Form',cat&&'Category',inn&&'Innovator'].filter(Boolean);
+  document.getElementById('activeFiltersNote').textContent=
+    active.length?`— ${active.join(', ')} filter${active.length>1?'s':''} active`:'';
+  renderCurrentView();
+}
+
+function clearFilters() {
+  ['searchInput','filterForm','filterCategory','filterInnovator'].forEach(id=>{
+    const el=document.getElementById(id);
+    el.value='';
+  });
+  applyFilters();
+}
+
+function renderCurrentView(){currentView==='cards'?renderCards():renderList();}
+
+function renderCards() {
+  const grid=document.getElementById('cardsGrid');
+  const items=filteredData.slice((currentPage-1)*PPC,currentPage*PPC);
+  if(!items.length){
+    grid.innerHTML=`<div class="empty"><div class="empty-ico">🔍</div><div class="empty-t">No brands found</div><div>Try adjusting filters or search</div></div>`;
+    document.getElementById('pagination').innerHTML='';return;
+  }
+  grid.innerHTML=items.map(r=>renderCard(r)).join('');
+  renderPag(filteredData.length,PPC);
+}
+
+function renderCard(r) {
+  const cfg=fcfg(r['Dosage form']);
+  const name=r['Products Name']||'—';
+  const sn=r['S#']!=null?r['S#']:0;
+  return `<div class="brand-card" style="--fc:${cfg.c}" onclick="openModal(${sn})">
+    <div class="bc-top">
+      <span class="bc-badge" style="background:${cfg.bg};color:${cfg.c};border:1px solid ${cfg.bo}">${cfg.lbl}</span>
+      <span class="bc-sn">#${r['S#']||'—'}</span>
+    </div>
+    <div class="bc-name">${esc(name)}</div>
+    <div class="bc-reg">Reg. No. <em>${r['Reg. No.']||'—'}</em></div>
+    <div class="bc-meta">
+      <div class="bc-meta-item">
+        <div class="bc-meta-lbl">Pack Size</div>
+        <div class="bc-meta-val">${esc(r['Pack Size']||'—')}</div>
+      </div>
+      <div class="bc-meta-item">
+        <div class="bc-meta-lbl">Brand Leader</div>
+        <div class="bc-meta-val accent">${esc(r['Brand Leader']||'—')}</div>
+      </div>
+      <div class="bc-meta-item bc-full-row">
+        <div class="bc-meta-lbl">Category</div>
+        <div class="bc-meta-val">${esc(r['Category']||'—')}</div>
+      </div>
+      <div class="bc-meta-item bc-full-row">
+        <div class="bc-meta-lbl">Indications</div>
+        <div class="bc-meta-val">${esc(r['Indications']||'—')}</div>
+      </div>
+      <div class="bc-meta-item bc-full-row">
+        <div class="bc-meta-lbl">Innovator Company</div>
+        <div class="bc-meta-val">${esc(r['Innovator Company']||'—')}</div>
+      </div>
+    </div>
+    <div class="bc-divider"></div>
+    <div class="bc-comp-lbl">Composition</div>
+    <div class="bc-comp">${r['Composition']?esc(r['Composition']):'<span style="color:var(--text-muted);font-style:italic">No data</span>'}</div>
+  </div>`;
+}
+
+function renderList() {
+  const cols=['S#','Reg. No.','Dosage form','Products Name','Pack Size','Category','Indications','Brand Leader','Innovator Company','Composition'];
+  document.getElementById('tableHead').innerHTML=cols.map(c=>`<th onclick="sortBy('${c}')">${c} ↕</th>`).join('');
+  const items=filteredData.slice((currentPage-1)*PPL,currentPage*PPL);
+  if(!items.length){
+    document.getElementById('tableBody').innerHTML=`<tr><td colspan="${cols.length}" style="text-align:center;padding:40px;color:var(--text-muted)">No brands found</td></tr>`;
+    document.getElementById('pagination').innerHTML='';return;
+  }
+  document.getElementById('tableBody').innerHTML=items.map(r=>{
+    const cfg=fcfg(r['Dosage form']);
+    return `<tr onclick="openModal(${r['S#']||0})">
+      <td class="td-mono">${r['S#']||'—'}</td>
+      <td class="td-reg">${r['Reg. No.']||'—'}</td>
+      <td><span style="font-size:0.67rem;padding:3px 9px;border-radius:20px;background:${cfg.bg};color:${cfg.c};border:1px solid ${cfg.bo}">${cfg.lbl}</span></td>
+      <td class="td-name">${esc(r['Products Name']||'—')}</td>
+      <td>${esc(r['Pack Size']||'—')}</td>
+      <td class="td-cat" title="${esc(r['Category']||'')}">${esc(r['Category']||'—')}</td>
+      <td class="td-trunc" title="${esc(r['Indications']||'')}">${esc(r['Indications']||'—')}</td>
+      <td style="color:var(--amber);font-size:0.82rem;">${esc(r['Brand Leader']||'—')}</td>
+      <td class="td-trunc" title="${esc(r['Innovator Company']||'')}">${esc(r['Innovator Company']||'—')}</td>
+      <td class="td-trunc" title="${esc(r['Composition']||'')}">${esc(r['Composition']||'—')}</td>
+    </tr>`;
+  }).join('');
+  renderPag(filteredData.length,PPL);
+}
+
+function setView(v,btn){
+  currentView=v;
+  document.querySelectorAll('.vbtn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');
+  document.getElementById('cardsView').style.display=v==='cards'?'':'none';
+  document.getElementById('listView').style.display=v==='list'?'':'none';
+  currentPage=1;renderCurrentView();
+}
+
+let sortCol=null,sortAsc=true;
+function sortBy(col){
+  if(sortCol===col)sortAsc=!sortAsc;else{sortCol=col;sortAsc=true;}
+  filteredData.sort((a,b)=>{
+    const va=a[col]||'',vb=b[col]||'';
+    const na=parseFloat(va),nb=parseFloat(vb);
+    if(!isNaN(na)&&!isNaN(nb)) return sortAsc?na-nb:nb-na;
+    return sortAsc?String(va).localeCompare(String(vb)):String(vb).localeCompare(String(va));
+  });renderList();
+}
+
+function renderPag(total,pp){
+  const pages=Math.ceil(total/pp);
+  const pag=document.getElementById('pagination');
+  if(pages<=1){pag.innerHTML='';return;}
+  let h=`<button class="pgbtn" onclick="goPage(${currentPage-1})" ${currentPage===1?'disabled':''}>‹</button>`;
+  for(let i=1;i<=pages;i++){
+    if(i===1||i===pages||Math.abs(i-currentPage)<=2)
+      h+=`<button class="pgbtn ${i===currentPage?'active':''}" onclick="goPage(${i})">${i}</button>`;
+    else if(Math.abs(i-currentPage)===3) h+=`<span class="pg-info">…</span>`;
+  }
+  h+=`<button class="pgbtn" onclick="goPage(${currentPage+1})" ${currentPage===pages?'disabled':''}>›</button>`;
+  h+=`<span class="pg-info">${currentPage} / ${pages}</span>`;
+  pag.innerHTML=h;
+}
+function goPage(p){currentPage=p;renderCurrentView();window.scrollTo({top:0,behavior:'smooth'});}
+
+function renderAllBrands() {
+  const groups={};
+  allData.forEach(r=>{const f=r['Dosage form']||'Other';if(!groups[f])groups[f]=[];groups[f].push(r);});
+  let html='';
+  Object.entries(groups).forEach(([form,brands])=>{
+    const cfg=fcfg(form);const rgb=hexRgb(cfg.c);
+    html+=`<div class="brands-section">
+      <div class="bs-header">
+        <span class="bs-icon">${cfg.lbl.split(' ')[0]}</span>
+        <span class="bs-title" style="color:${cfg.c}">${form}</span>
+        <span class="bs-count">${brands.length} brands</span>
+      </div>
+      <div class="bs-grid">
+        ${brands.map(r=>`
+          <div class="bs-card" onclick="openModal(${r['S#']||0})"
+            style="background:linear-gradient(135deg,rgba(${rgb},0.09),rgba(0,0,0,0.4));border:1px solid rgba(${rgb},0.22);">
+            <div class="bs-card-glow" style="background:radial-gradient(circle at 100% 0%,rgba(${rgb},0.18),transparent)"></div>
+            <div style="display:flex;justify-content:space-between;margin-bottom:4px;">
+              <span class="bs-sn">S#${r['S#']||'—'}</span>
+              <span class="bs-reg" style="color:${cfg.c}">Reg.${r['Reg. No.']||'—'}</span>
+            </div>
+            <div class="bs-name">${esc(r['Products Name']||'—')}</div>
+            ${r['Category']?`<div class="bs-detail">🏷 ${esc(r['Category'])}</div>`:''}
+            ${r['Brand Leader']?`<div class="bs-detail" style="color:var(--amber)">⭐ ${esc(r['Brand Leader'])}</div>`:''}
+            ${r['Indications']?`<div class="bs-detail">💊 ${esc(r['Indications'])}</div>`:''}
+            ${r['Pack Size']?`<div class="bs-detail">📦 ${esc(r['Pack Size'])}</div>`:''}
+            ${r['Composition']?`<div class="bs-comp">${esc(r['Composition'])}</div>`:''}
+          </div>`).join('')}
+      </div>
+    </div>`;
+  });
+  document.getElementById('allBrandsList').innerHTML=html;
+}
+
+function openModal(sn) {
+  const r=allData.find(x=>x['S#']==sn);if(!r) return;
+  const cfg=fcfg(r['Dosage form']);const rgb=hexRgb(cfg.c);
+  document.getElementById('bmHeader').style.background=`linear-gradient(135deg,rgba(${rgb},0.12) 0%,rgba(0,0,0,0.3) 100%)`;
+  document.getElementById('brandModalBox').style.borderColor=`rgba(${rgb},0.3)`;
+  document.getElementById('bmBadge').textContent=cfg.lbl;
+  document.getElementById('bmBadge').style.cssText=`background:${cfg.bg};color:${cfg.c};border:1px solid ${cfg.bo};font-size:0.68rem;font-weight:700;text-transform:uppercase;letter-spacing:0.09em;padding:5px 13px;border-radius:20px;`;
+  document.getElementById('bmSn').textContent=r['S#']!=null?`Serial No. ${r['S#']}`:'';
+  document.getElementById('bmName').textContent=r['Products Name']||'—';
+  document.getElementById('bmName').style.background=`linear-gradient(135deg,#fff 0%,${cfg.c} 100%)`;
+  document.getElementById('bmName').style.webkitBackgroundClip='text';
+  document.getElementById('bmName').style.webkitTextFillColor='transparent';
+  document.getElementById('bmReg').innerHTML=r['Reg. No.']?`Registration No. <em>${r['Reg. No.']}</em>`:'';
+
+  const FIELDS=[
+    {lbl:'Registration No.',   val:r['Reg. No.'],         cls:'mono',  span:1},
+    {lbl:'Dosage Form',        val:r['Dosage form'],                    span:1},
+    {lbl:'Pack Size',          val:r['Pack Size'],                      span:1},
+    {lbl:'Category',           val:r['Category'],          cls:'blue',  span:2},
+    {lbl:'Brand Leader',       val:r['Brand Leader'],      cls:'green', span:1},
+    {lbl:'Innovator Company',  val:r['Innovator Company'],              span:3},
+    {lbl:'Indications',        val:r['Indications'],                    span:3},
+    {lbl:'Composition',        val:r['Composition'],       cls:'comp',  span:3, special:'comp'},
+  ];
+
+  document.getElementById('bmGrid').innerHTML=FIELDS.map(f=>{
+    const spanCls=f.span===3?'span3':f.span===2?'span2':'';
+    const valHtml=f.val
+      ?`<div class="bm-fv ${f.cls||''}">${esc(String(f.val))}</div>`
+      :`<div class="bm-fv na">Not specified</div>`;
+    const compCls=f.special==='comp'?'comp-field':'';
+    return `<div class="bm-field ${spanCls} ${compCls}" ${f.special==='comp'?`style="border-left-color:${cfg.c};"`:''}>
+      <div class="bm-fl">${f.lbl}</div>${valHtml}</div>`;
+  }).join('');
+
+  document.getElementById('brandModal').classList.add('open');
+}
+function closeBrandModal(){document.getElementById('brandModal').classList.remove('open');}
+function closeBrandModalBg(e){if(e.target===document.getElementById('brandModal'))closeBrandModal();}
+
+function renderManageSummary() {
+  const forms={};
+  allData.forEach(r=>{const f=r['Dosage form']||'Unknown';forms[f]=(forms[f]||0)+1;});
+  let h=`<div style="background:rgba(41,232,255,0.08);border:1px solid rgba(41,232,255,0.2);border-radius:10px;padding:14px;text-align:center;">
+    <div style="font-family:'JetBrains Mono',monospace;font-size:1.6rem;color:var(--cyan);">${allData.length}</div>
+    <div style="font-size:0.68rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.06em;margin-top:4px;">Total</div></div>`;
+  Object.entries(forms).forEach(([f,c])=>{
+    const cfg=fcfg(f);
+    h+=`<div style="background:${cfg.bg};border:1px solid ${cfg.bo};border-radius:10px;padding:14px;text-align:center;">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:1.6rem;color:${cfg.c};">${c}</div>
+      <div style="font-size:0.66rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.05em;margin-top:4px;">${f}</div></div>`;
+  });
+  document.getElementById('manageSummary').innerHTML=h;
+}
+
+function showUploadFlow(){pendingAction='upload';document.getElementById('pwdIcon').textContent='⬆';document.getElementById('pwdTitle').textContent='Upload Authentication';document.getElementById('pwdSub').textContent='Enter password to upload new CSV data';document.getElementById('pwdInput').value='';document.getElementById('pwdErr').classList.remove('show');document.getElementById('pwdModal').classList.add('open');}
+function showDeleteFlow(){pendingAction='delete';document.getElementById('pwdIcon').textContent='⊘';document.getElementById('pwdTitle').textContent='Delete Authentication';document.getElementById('pwdSub').textContent='Enter password to delete all records';document.getElementById('pwdInput').value='';document.getElementById('pwdErr').classList.remove('show');document.getElementById('pwdModal').classList.add('open');}
+function submitPwd(){
+  if(document.getElementById('pwdInput').value!==PWD){document.getElementById('pwdErr').classList.add('show');document.getElementById('pwdInput').value='';return;}
+  document.getElementById('pwdModal').classList.remove('open');
+  if(pendingAction==='upload')openUploadModal();else confirmDelete();
+}
+function openUploadModal(){document.getElementById('upStatus').style.display='none';document.getElementById('upPreview').style.display='none';document.getElementById('upConfirmBtn').style.display='none';pendingFileData=null;document.getElementById('uploadModal').classList.add('open');}
+function handleDragOver(e){e.preventDefault();document.getElementById('upz').classList.add('dragover');}
+function handleDragLeave(){document.getElementById('upz').classList.remove('dragover');}
+function handleDrop(e){e.preventDefault();handleDragLeave();if(e.dataTransfer.files[0])processFile(e.dataTransfer.files[0]);}
+function handleFileSelect(e){if(e.target.files[0])processFile(e.target.files[0]);}
+
+function processFile(file){
+  if(!file.name.endsWith('.csv')){toast('Please upload a .csv file','err');return;}
+  const r=new FileReader();
+  r.onload=e=>{
+    const text=e.target.result;
+    const lines=text.split(/\r?\n/).filter(l=>l.trim());
+    if(lines.length<2){toast('CSV appears empty','err');return;}
+    const hdrs=parseCSVLine(lines[0]).map(h=>h.trim().replace(/^"+|"+$/g,''));
+    // Map new column names to internal keys
+    const colMap={'SNo':'S#','RegNo':'Reg. No.','DosageForm':'Dosage form','ProductName':'Products Name',
+      'PackSize':'Pack Size','Composition':'Composition','Category':'Category','Indications':'Indications',
+      'BrandLeader':'Brand Leader','InnovatorCompany':'Innovator Company'};
+    const rows=lines.slice(1).map(line=>{
+      const vals=parseCSVLine(line);
+      const obj={};
+      hdrs.forEach((h,i)=>{
+        const key=colMap[h]||h;
+        let v=vals[i]?vals[i].trim().replace(/^"+|"+$/g,'')||null:null;
+        if(v&&(key==='S#'||key==='Reg. No.')){const n=parseInt(v);if(!isNaN(n))v=n;}
+        obj[key]=v;
+      });
+      return obj;
+    }).filter(r=>r['S#']||r['Products Name']);
+    pendingFileData=rows;
+    document.getElementById('upStatus').style.display='block';
+    document.getElementById('upStatus').innerHTML=`<div style="background:rgba(34,232,160,0.09);border:1px solid rgba(34,232,160,0.25);border-radius:10px;padding:13px;"><div style="color:var(--green);font-weight:600;margin-bottom:5px;">✓ File Ready</div><div style="font-size:0.81rem;color:var(--text-dim);">${file.name} · ${rows.length} records · ${hdrs.length} columns</div><div style="font-size:0.73rem;color:var(--text-muted);margin-top:3px;">Columns: ${hdrs.join(', ')}</div></div>`;
+    document.getElementById('upPreview').style.display='block';
+    document.getElementById('upPreview').innerHTML=`<div style="font-size:0.68rem;color:var(--text-muted);margin-bottom:6px;text-transform:uppercase;letter-spacing:0.06em;">Preview — first 3 rows</div><div style="background:rgba(0,0,0,0.35);border-radius:8px;padding:10px;font-family:'JetBrains Mono',monospace;font-size:0.68rem;color:var(--text-dim);overflow-x:auto;max-height:120px;">${rows.slice(0,3).map(r=>JSON.stringify(r)).join('\n')}</div>`;
+    document.getElementById('upConfirmBtn').style.display='block';
+  };
+  r.readAsText(file);
+}
+
+function parseCSVLine(line){
+  const res=[];let cur='',inQ=false;
+  for(let i=0;i<line.length;i++){if(line[i]==='"'){inQ=!inQ;continue;}if(line[i]===','&&!inQ){res.push(cur);cur='';continue;}cur+=line[i];}
+  res.push(cur);return res;
+}
+
+function confirmUpload(){
+  if(!pendingFileData)return;
+  allData=[...pendingFileData];filteredData=[...allData];currentPage=1;
+  populateFilters();renderStats();applyFilters();renderAllBrands();renderManageSummary();
+  document.getElementById('uploadModal').classList.remove('open');
+  toast(`✓ Loaded ${allData.length} records successfully`,'ok');
+}
+
+function confirmDelete(){
+  const n=allData.length;allData=[];filteredData=[];currentPage=1;
+  renderStats();applyFilters();renderAllBrands();renderManageSummary();
+  toast(`⊘ ${n} records deleted`,'err');
+}
+
+function showPage(name){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('page-'+name).classList.add('active');
+  document.getElementById('nav-'+name).classList.add('active');
+}
+
+function esc(s){if(!s)return '';return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+function hexRgb(h){const r=parseInt(h.slice(1,3),16),g=parseInt(h.slice(3,5),16),b=parseInt(h.slice(5,7),16);return `${r},${g},${b}`;}
+function toast(msg,type=''){document.querySelectorAll('.toast').forEach(t=>t.remove());const t=document.createElement('div');t.className=`toast ${type}`;t.textContent=msg;document.body.appendChild(t);setTimeout(()=>t.remove(),3500);}
+
+init();
+</script>
+</div>
+</body>
+</html>
